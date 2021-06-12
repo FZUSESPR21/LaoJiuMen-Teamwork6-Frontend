@@ -50,9 +50,10 @@ export default {
 
 #nav{
   height: 100%;
+  width: 50%;
   float: right;
   text-align: center;
-  margin-right:160px;
+  margin-right:10%;
 }
 button{
   height: 100%;
@@ -61,7 +62,8 @@ button{
   background-color: white;
 }
 #logo{
-  margin-left: 140px;
+  margin-left: 10%;
+  width: 13%;
   height: 100%;
 }
 #icon{

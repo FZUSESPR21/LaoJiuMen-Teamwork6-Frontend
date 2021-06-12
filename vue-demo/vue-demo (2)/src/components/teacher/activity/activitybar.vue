@@ -1,12 +1,13 @@
 <template>
   <el-row class="tac">
-    <el-col :span="25">
+    <el-col span="36">
       <el-menu
+        class="menu"
         :default-active="this.$router.path"
         router
-        class="el-menu-vertical-demo"
         @open="handleOpen"
-        @close="handleClose">
+        @close="handleClose"
+        active-text-color="white">
 
         <el-menu-item class="item" index="/teacher/activity/homeworklist">
 <!--          <router-link to="/teacher/activity/homeworklist" tag="button" class="button">作业列表</router-link>-->
@@ -51,10 +52,16 @@
   border: 2px
 
 }*/
+.tac {
+  width: 100%;
+}
+.menu {
+  width: 100%;
+}
 
 .item {
   font-weight: bold;
-  width: 160px;
+  width: 100%;
 }
 
 .item.is-active {

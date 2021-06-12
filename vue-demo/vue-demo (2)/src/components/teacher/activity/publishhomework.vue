@@ -1,15 +1,11 @@
 <template>
   <div id="div1">
-    <div>
-      <span id="span" class="text">发布作业</span>
+    <div id="divP">
+      <p class="p1">发布作业</p>
     </div>
 
-    <br>
 
-    <div>
-      <sapn class="text">作业内容</sapn>
-    </div>
-
+    <p id="p2">作业内容</p>
     <el-dialog
       title="提示"
       :visible.sync=tipBox>
@@ -30,7 +26,7 @@
 
     <br>
 
-    <div>
+    <div id="divContent">
       <el-form :model="publishForm" :rules="rules" ref="publishForm">
         <el-form-item prop="title">
           <i class="el-icon-star-on"></i>
@@ -233,18 +229,33 @@ export default {
 <style scoped>
 #div1 {
   background-color: white;
-  margin-top: 3%;
+  margin-top: -1%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
 }
 
-#span{
-  background-color: gray;
+#divP {
+  background-color: #e8e8e8;
+}
+
+.p1 {
   font-size: 15px;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
+#p2 {
+  font-weight: bold;
+  margin-left: 3%;
 }
 
 #divSelect {
   float: right;
+  margin-right: 3%;
+}
+#divContent {
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .button {
@@ -258,5 +269,6 @@ export default {
 
 #publishbutton {
   float: right;
+  margin-bottom: 2%;
 }
 </style>

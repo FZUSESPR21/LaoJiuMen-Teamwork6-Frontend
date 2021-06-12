@@ -38,46 +38,17 @@ export default {
 }
 </script>
 
-<style scoped>
-#head{
-  font-size: 20px;
-  height: 100px;
-}
-#noticedeliver{
-  margin-top:0%;
-  background-color: white;
-  /*border-style:solid;
-  border-width:1px;
-  border-color:gray;
-  border-radius:20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);*/
-}
-#noticehead{
-  font-size:21px;
-  margin-top:0.2%;
-  margin-bottom:2%;
-  margin-left:7.5%;
-}
-.tac{
-  width:30%;
-  margin-top:10%;
-}
-</style>
-
 
 <style scoped>
 #head{
-  background-color: white;
-  font-size: 20px;
   height: 100px;
   margin-top: 8%;
 }
 
 #head1 {
   position: absolute;
-  left: 30px;
-  width: 200px;
 
+  margin-left: 3%;
 }
 
 #head2 {
@@ -85,19 +56,19 @@ export default {
   font-size: 15px;
 
   position: absolute;
-  left: 30px;
-  width: 200px;
+  margin-left: 3%;
 }
 
 .part{
-  margin-top: -5.6%;
+  margin-top: -2.8%;
   background-color: rgb(255, 255, 255);
-  float:left;
-  width: 900px;
+  float:right;
+  width: 90%;
 }
 
 .sidebar{
-  margin-top: -4.5%;
+  margin-top: -2.8%;
   float: left;
+  width: 10%;
 }
 </style>

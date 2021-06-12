@@ -1,7 +1,7 @@
 <template>
   <div id="divMain">
     <div id="divSelect">
-      <span>班级：</span>
+      班级：
       <el-select size="mini"
                  v-model="value"
                  placeholder="请选择班级"
@@ -31,18 +31,19 @@
           show-overflow-tooltip>
         </el-table-column>
 
-        <el-table-column label="操作" align="center" width="200">
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button v-if="scope.row.type=='2'" type="text" size="mini" @click="editClick" class="button" icon="el-icon-edit">编辑</el-button>
             <el-button v-else type="text" size="mini" @click="downloadClick(scope.$index)" class="button" icon="el-icon-download">下载</el-button>
-          </template>
-        </el-table-column>
-
-        <el-table-column label="操作" align="center" width="200">
-          <template slot-scope="scope">
             <el-button type="text" size="mini" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
           </template>
         </el-table-column>
+
+<!--        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button type="text" size="mini" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
+          </template>
+        </el-table-column>-->
       </el-table>
       <el-pagination
         id="pagination"
@@ -71,8 +72,8 @@ export default {
 
 
       tableCol: [
-        {prop: "resourceName", label: "名称", width: 250},
-        {prop: "downloads", label: "下载量", width: 250},
+        {prop: "resourceName", label: "名称"},
+        {prop: "downloads", label: "下载量"},
 
       ],
 
@@ -138,7 +139,7 @@ export default {
     headeRowClass({row, column, rowIndex, columnIndex}){
       //表头的背景颜色
       if(rowIndex==0){
-        return 'background:#DCDCDC; color: black';
+        return 'background:#e8e8e8; color: black';
       }
     },
 
@@ -209,6 +210,7 @@ export default {
 <style scoped>
 #divSelect {
   float: right;
+  margin-top: -5%
 }
 
 .button {

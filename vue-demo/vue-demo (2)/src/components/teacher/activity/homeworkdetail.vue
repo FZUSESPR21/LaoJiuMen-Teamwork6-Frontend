@@ -1,6 +1,6 @@
 <template>
   <div id="div1">
-    <div >
+    <div id="divDetail">
       <i class="el-icon-document"></i>
       <sapn id="tag">作业详情</sapn>
       <el-table id="table1"
@@ -37,7 +37,7 @@
           align="center">
         </el-table-column>
 
-        <el-table-column label="作业详情" align="center" width="150">
+        <el-table-column label="作业详情" align="center">
           <template slot-scope="scope">
             <el-button size="mini" type="text" @click="lookClick(scope.row)" class="button" icon="el-icon-view">查看</el-button>
           </template>
@@ -64,8 +64,8 @@ export default {
       status: false,
 
       tableCol: [
-        {prop: "key", label: "键", width: 249},
-        {prop: "value", label: "值", width: 650},
+        {prop: "key", label: "键"},
+        {prop: "value", label: "值"},
 
       ],
 
@@ -77,10 +77,10 @@ export default {
       ],
 
       tableCol2: [
-        {prop: "account", label: "学号", width: 200},
-        {prop: "studentName", label: "姓名", width: 150},
-        {prop: "submittedAt", label: "提交时间", width: 250},
-        {prop: "score", label: "提交情况", width: 150},
+        {prop: "account", label: "学号"},
+        {prop: "studentName", label: "姓名"},
+        {prop: "submittedAt", label: "提交时间"},
+        {prop: "score", label: "提交情况"},
 
       ],
 
@@ -164,6 +164,10 @@ export default {
 </script>
 
 <style scoped>
+#divDetail {
+  margin-top: -3%;
+}
+
 #table {
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;

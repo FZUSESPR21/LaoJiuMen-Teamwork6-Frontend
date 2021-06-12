@@ -28,16 +28,14 @@ export default {
 
 <style scoped>
 #head{
-  margin-top: 8%;
-  font-size: 20px;
   height: 100px;
+  margin-top: 8%;
 }
 
 #head1 {
   position: absolute;
-  left: 30px;
-  width: 200px;
 
+  margin-left: 3%;
 }
 
 #head2 {
@@ -45,20 +43,19 @@ export default {
   font-size: 15px;
 
   position: absolute;
-  left: 30px;
-  width: 200px;
-
+  margin-left: 3%;
 }
 
 .part{
-  margin-top: -5.7%;
+  margin-top: -2.8%;
   background-color: rgb(255, 252, 252);
-  float:left;
-  width: 900px;
+  float:right;
+  width: 90%;
 }
 
 .sidebar{
-  margin-top: -3%;
+  margin-top: -2.8%;
   float: left;
+  width: 10%;
 }
 </style>

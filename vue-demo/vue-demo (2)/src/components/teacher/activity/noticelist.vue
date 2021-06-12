@@ -1,51 +1,45 @@
 <template>
   <div>
-    <div>
-  <el-form :inline="true" :model="formInline" class="demo-form-inline">
-    <el-form-item label="班级">
-      <el-select size="mini" v-model="formInline.region" placeholder="请选择年份班级" @change="selectChange">
+    <div id="divSelect">
+      班级：
+      <el-select size="mini"
+                 v-model="value"
+                 placeholder="请选择班级"
+                 @change="selectChange">
         <el-option
           v-for="item in options"
           :key="item.id"
           :label="item.clazzName"
-          :value="item.id+''">
+          :value="item.id+''"
+        >
         </el-option>
       </el-select>
-    </el-form-item>
-    <el-form-item class="resultbutton"></el-form-item>
-  </el-form>
     </div>
-  <el-table id="table"
-              :data="tableData"
-              stripe
-              style="width: 100%"
-              :header-cell-style="headeRowClass">
-      <el-table-column
-        v-for="(item,i) in tableCol"
-        :key="i"
-        :prop="item.prop"
-        :label="item.label"
-        :width="item.width"
-        align="center"
-        show-overflow-tooltip>
-      </el-table-column>
 
-      <el-table-column label="操作" align="center" width="160">
-        <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
-        </template>
-      </el-table-column>
-<!--      <el-table-column label="操作" align="center" width="80">-->
-<!--        <template slot-scope="scope">-->
-<!--          <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">修改</el-button>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-      <el-table-column label="操作" align="center" width="150">
-        <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <div id="table">
+      <el-table :data="tableData"
+                stripe
+                style="width: 100%"
+                :header-cell-style="headeRowClass">
+        <el-table-column
+          v-for="(item,i) in tableCol"
+          :key="i"
+          :prop="item.prop"
+          :label="item.label"
+          :width="item.width"
+          align="center"
+          show-overflow-tooltip>
+        </el-table-column>
+
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
+            <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
     <el-pagination
       id="pagination"
       @current-change="handleCurrentChange"
@@ -54,9 +48,8 @@
       layout="prev, pager, next"
       :total="totalCount">
     </el-pagination>
-    <el-button type="primary" @click="deliverClick()">发布通知</el-button>
-
-</div>
+    <el-button type="primary" plain size="mini" id="button1" @click="deliverClick()">发布通知</el-button>
+  </div>
 </template>
 
 <script>
@@ -70,11 +63,11 @@ export default {
       },
       options:[],
       tableCol: [
-        {prop: "id", label: "id", width: 80},
-        {prop: "notificationName", label: "通知名称", width: 100},
-        {prop: "content", label: "通知内容", width: 150},
-        {prop: "issuer", label: "发布人", width: 80},
-        {prop: "releasedAt", label: "发布时间", width: 200},
+        //{prop: "id", label: "id"},
+        {prop: "notificationName", label: "通知名称"},
+        {prop: "content", label: "通知内容"},
+        {prop: "issuer", label: "发布人"},
+        {prop: "releasedAt", label: "发布时间"},
 
       ],
 
@@ -105,7 +98,7 @@ export default {
 
       selectChange() {
         this.querySearch(this.currentPage);
-        localStorage.setItem('clazzvalue', this.formInline.region)
+        localStorage.setItem('clazzvalue', this.value)
       },
 
       deliverClick(){
@@ -149,7 +142,7 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-          url: 'http://1.15.149.222:8080/coursewebsite/notice/all?clazzId='+this.formInline.region +'&pn='+pageNum,
+          url: 'http://1.15.149.222:8080/coursewebsite/notice/all?clazzId='+this.value +'&pn='+pageNum,
         }).then((response) => {          //这里使用了ES6的语法
           /*console.log(JSON.stringify(response))       //请求成功返回的数据
           alert(JSON.stringify(response))
@@ -176,11 +169,11 @@ export default {
           data: JSON.stringify(info),
           url: 'http://1.15.149.222:8080/coursewebsite/teacher/notice/remove',
         }).then((response) => {          //这里使用了ES6的语法
-          /*console.log(JSON.stringify(response))       //请求成功返回的数据
-          alert(JSON.stringify(response))
-          alert("成功")
-          console.log(response.data.data.list)
-          this.tableData = response.data.data.list*/
+          if (response.data.code==='200') {
+            alert('删除成功')
+            this.$router.push('/teacher/activity/noticelist')
+            this.$router.go(0)
+          }
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })
@@ -190,52 +183,39 @@ export default {
 
     created () {
       this.options = JSON.parse(localStorage.getItem('clazzInfo'))
-      this.formInline.region = this.options[0].id+''
+      this.value = this.options[0].id+''
       if (!localStorage.getItem('clazzvalue'))
-        localStorage.setItem('clazzvalue', this.formInline.region)
-      else this.formInline.region = localStorage.getItem('clazzvalue')
+        localStorage.setItem('clazzvalue', this.value)
+      else this.value = localStorage.getItem('clazzvalue')
       this.querySearch(this.currentPage);
     }
   };
-
-
-
 </script>
 
 
 <style scoped>
-#head{
+#divSelect {
+  float: right;
+  margin-right: 2%;
+  margin-top: -5%
+}
+
+#table {
+  font-weight: normal;
+}
+
+.button {
   background-color: white;
-  font-size: 20px;
-  height: 100px;
-}
-.demo-form-inline{
-  margin-top:5%;
-}
-.resultbutton{
-  float:right;
-}
-</style>
-
-
-
-
-<style scoped>
-#head{
-  background-color: white;
-  font-size: 20px;
-  height: 100px;
-  margin-top: 8%;
+  color: #4ab2ee;
 }
 
-.english{
-  color: rgb(179, 179, 179);
-  margin-top: 0;
-  font-size: 15px;
+#button1 {
+  color: white;
+  background-color: #4ab2ee;
+  float: left;
 }
 
-.part{
-  margin-top: -4%;
-  background-color: rgb(228, 228, 228);
+#pagination{
+  float: right;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
-
     <div id="divSelect">
+      班级：
       <el-select size="mini"
                  v-model="value"
                  placeholder="请选择班级"
@@ -16,34 +16,30 @@
       </el-select>
     </div>
 
-    <el-table id="table"
-              :data="tableData"
-              stripe
-              style="width: 100%"
-              :header-cell-style="headeRowClass">
-      <el-table-column
-        v-for="(item,i) in tableCol"
-        :key="i"
-        :prop="item.prop"
-        :label="item.label"
-        :width="item.width"
-        align="center"
-        show-overflow-tooltip>
-      </el-table-column>
+    <div id="table">
+      <el-table :data="tableData"
+                stripe
+                style="width: 100%"
+                :header-cell-style="headeRowClass">
+        <el-table-column
+          v-for="(item,i) in tableCol"
+          :key="i"
+          :prop="item.prop"
+          :label="item.label"
+          :width="item.width"
+          align="center"
+          show-overflow-tooltip>
+        </el-table-column>
 
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
+            <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
-      <el-table-column label="操作" align="center" width="150">
-        <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="操作" align="center" width="150">
-        <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
     <el-pagination
       id="pagination"
       @current-change="handleCurrentChange"
@@ -64,10 +60,10 @@
         value: '',
 
         tableCol: [
-          {prop: "title", label: "作业名称", width: 100},
-          {prop: "startAt", label: "开始时间", width: 200},
-          {prop: "endAt", label: "结束时间", width: 200},
-          {prop: "status", label: "状态", width: 100},
+          {prop: "title", label: "作业名称"},
+          {prop: "startAt", label: "开始时间"},
+          {prop: "endAt", label: "结束时间"},
+          {prop: "status", label: "状态"},
 
         ],
 
@@ -121,7 +117,7 @@
       headeRowClass({row, column, rowIndex, columnIndex}){
         //表头的背景颜色
         if(rowIndex==0){
-          return 'background:#DCDCDC; color: black';
+          return 'background:#e8e8e8; color: black';
         }
       },
 
@@ -165,7 +161,12 @@
           url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/delete',
         }).then((response) => {          //这里使用了ES6的语法
 
-          alert('删除成功')
+          if (response.data.code==='200') {
+            alert('删除成功')
+            this.$router.push('/teacher/activity/homeworklist')
+            this.$router.go(0)
+
+          }
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })
@@ -186,6 +187,8 @@
 <style scoped>
 #divSelect {
   float: right;
+  margin-right: 2%;
+  margin-top: -5%
 }
 
 #table {
@@ -195,6 +198,10 @@
 .button {
   background-color: white;
   color: #4ab2ee;
+}
+
+#pagination{
+  float: right;
 }
 
 </style>
