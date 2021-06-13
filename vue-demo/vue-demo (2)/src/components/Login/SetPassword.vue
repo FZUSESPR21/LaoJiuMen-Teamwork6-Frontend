@@ -91,31 +91,31 @@ export default {
       }
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          if (message.captcha === localStorage.getItem('captcha')) {
-            this.$axios({
-              method: 'post',
-              headers: {
-                'Content-type': 'application/json;charset=UTF-8'
-              },
-              data: JSON.stringify(message),
-              url: 'http://1.15.149.222:8080/coursewebsite/chg_pwd',
-            }).then((response) => {          //这里使用了ES6的语法
-              console.log(JSON.stringify(response))       //请求成功返回的数据
-              alert('成功修改密码')
-              // console.log(response.data.data)
-              // if (response.data.code === 200) {
-              //   alert(response.data.message)
-              //   this.$router.push('/login')
-              // } else if (response.data.code === 401) {
-              //   alert(response.data.message)
-              // }
-            }).catch((error) => {
-              console.log(error)       //请求失败返回的数据
-            })
-          } else {
-            alert("验证码错误！");
-            return false;
-          }
+          //if (message.captcha === localStorage.getItem('captcha')) {
+          this.$axios({
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json;charset=UTF-8'
+            },
+            data: JSON.stringify(message),
+            url: 'http://1.15.149.222:8080/coursewebsite/chg_pwd',
+          }).then((response) => {          //这里使用了ES6的语法
+            alert(JSON.stringify(response.data.message))       //请求成功返回的数据
+            //alert('成功修改密码')
+            // console.log(response.data.data)
+            // if (response.data.code === 200) {
+            //   alert(response.data.message)
+            //   this.$router.push('/login')
+            // } else if (response.data.code === 401) {
+            //   alert(response.data.message)
+            // }
+          }).catch((error) => {
+            console.log(error)       //请求失败返回的数据
+          })
+          // } else {
+          //   alert("验证码错误！");
+          //   return false;
+          // }
         } else {
           console.log('error !!');
           return false;
@@ -137,7 +137,7 @@ export default {
         url: 'http://1.15.149.222:8080/coursewebsite/captcha',
       }).then((response) => {          //这里使用了ES6的语法
         alert(JSON.stringify(response.data.message));
-        localStorage.setItem("captcha",response.data.data);
+        //localStorage.setItem("captcha",response.data.data);
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
