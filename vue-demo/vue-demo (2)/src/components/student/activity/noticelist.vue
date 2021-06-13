@@ -15,7 +15,7 @@
         show-overflow-tooltip>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" width="100">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
         </template>
@@ -42,11 +42,11 @@
       region: ''
       },
       tableCol: [
-        {prop: "id", label: "id", width: 100},
-        {prop: "notificationName", label: "通知名称", width: 150},
-        {prop: "content", label: "通知内容", width: 150},
-        {prop: "issuer", label: "发布人", width: 150},
-        {prop: "releasedAt", label: "发布时间", width: 250},
+        //{prop: "id", label: "id"},
+        {prop: "notificationName", label: "通知名称"},
+        {prop: "content", label: "通知内容"},
+        {prop: "issuer", label: "发布人"},
+        {prop: "releasedAt", label: "发布时间"},
 
       ],
 
@@ -90,7 +90,7 @@
       headeRowClass({row, column, rowIndex, columnIndex}){
         //表头的背景颜色
         if(rowIndex==0){
-          return 'background:#DCDCDC; color: black';
+          return 'background:#e8e8e8; color: black';
         }
       },
 
@@ -137,4 +137,8 @@
   color: #4ab2ee;
 }
 
+#pagination{
+  float: right;
+  margin-top: 2%;
+}
 </style>

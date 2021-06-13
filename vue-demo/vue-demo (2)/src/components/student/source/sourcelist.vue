@@ -29,36 +29,29 @@
 <style scoped>
 #head{
   font-size: 20px;
-  height: 100px;
-  background-color: white;
-  margin-top: 8%;
+  height: 75px;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 
 #head1 {
-  position: absolute;
-  left: 30px;
-  width: 200px;
-
+  margin-bottom: 10px;
 }
 
 #head2 {
   color: rgb(179, 179, 179);
+  margin-top: 0;
   font-size: 15px;
-
-  position: absolute;
-  left: 30px;
-  width: 200px;
 }
 
 .part{
-  margin-top: -3%;
-  background-color: white;
-  float:left;
-  width: 900px;
+  background-color: rgb(255, 255, 255);
+  float:right;
+  width: 90%;
 }
 
 .sidebar{
-  margin-top: -3%;
   float: left;
+  width: 10%;
 }
 </style>

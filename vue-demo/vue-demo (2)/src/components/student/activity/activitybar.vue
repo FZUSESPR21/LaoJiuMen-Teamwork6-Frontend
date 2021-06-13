@@ -58,7 +58,7 @@
 
 .item {
   font-weight: bold;
-  width: 160px;
+  width: 100%
 }
 
 .item.is-active {

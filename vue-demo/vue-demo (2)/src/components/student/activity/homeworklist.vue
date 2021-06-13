@@ -136,4 +136,9 @@
   color: #4ab2ee;
 }
 
+#pagination{
+  float: right;
+  margin-top: 2%;
+}
+
 </style>

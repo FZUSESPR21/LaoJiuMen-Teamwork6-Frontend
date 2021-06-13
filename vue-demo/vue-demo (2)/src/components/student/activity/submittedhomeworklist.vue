@@ -13,7 +13,7 @@
         align="center">
       </el-table-column>
 
-      <el-table-column label="操作" align="center" width="200">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
         </template>
@@ -37,8 +37,8 @@ export default {
     return {
 
       tableCol: [
-        {prop: "title", label: "作业名称", width: 400},
-        {prop: "score", label: "得分", width: 300},
+        {prop: "title", label: "作业名称"},
+        {prop: "score", label: "得分"},
 
       ],
 
@@ -92,7 +92,7 @@ export default {
     headeRowClass({row, column, rowIndex, columnIndex}){
       //表头的背景颜色
       if(rowIndex==0){
-        return 'background:#DCDCDC; color: black';
+        return 'background:#e8e8e8; color: black';
       }
     },
 
@@ -131,5 +131,10 @@ export default {
   background-color: white;
   color: #4ab2ee;
   border: 2px
+}
+
+#pagination{
+  float: right;
+  margin-top: 2%;
 }
 </style>

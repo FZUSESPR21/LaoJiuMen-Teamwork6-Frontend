@@ -50,18 +50,20 @@ export default {
 
 #nav{
   height: 100%;
+  width: 60%;
   float: right;
   text-align: center;
-  margin-right: 200px;
+  margin-right: 10%;
 }
 button{
   height: 100%;
-  width: 100px;
+  width: 11%;
   border: none;
   background-color: white;
 }
 #logo{
-  margin-left: 140px;
+  margin-left: 10%;
+  width: 13%;
   height: 100%;
 }
 #icon{
@@ -69,16 +71,16 @@ button{
   width: 5%;
   float: right;
   margin-top:1.5%;
-  margin-right: -15%;
+  margin-right: -7%;
 }
 #exit{
   height:70%;
-  width: 50px;
+  width: 6%;
   float: right;
   margin-top:0.8%;
-  margin-right: -22%;
-  border: 1px;
-  border-style:dotted;
+  margin-right: -15%;
+  border: solid 1px;
+
   border-block-color: black;
 }
 .router-link-active{

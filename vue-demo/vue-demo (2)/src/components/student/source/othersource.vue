@@ -19,7 +19,7 @@
         </template>
       </el-table-column>-->
 
-      <el-table-column label="操作" align="center" width="300">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="text" @click="downloadClick(scope.$index)" class="button" icon="el-icon-download">下载</el-button>
         </template>
@@ -42,8 +42,8 @@ export default {
   data() {
     return {
       tableCol: [
-        {prop: "resourceName", label: "名称", width: 300},
-        {prop: "downloads", label: "下载量", width: 300},
+        {prop: "resourceName", label: "名称"},
+        {prop: "downloads", label: "下载量"},
 
       ],
 
@@ -74,7 +74,7 @@ export default {
     headeRowClass({row, column, rowIndex, columnIndex}){
       //表头的背景颜色
       if(rowIndex==0){
-        return 'background:#DCDCDC; color: black';
+        return 'background:#e8e8e8; color: black';
       }
     },
 
@@ -123,5 +123,10 @@ export default {
   background-color: white;
   color: #4ab2ee;
   border: 2px
+}
+
+#pagination{
+  float: right;
+  margin-top: 2%;
 }
 </style>

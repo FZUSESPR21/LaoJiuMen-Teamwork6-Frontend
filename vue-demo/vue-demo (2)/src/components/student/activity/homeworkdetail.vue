@@ -37,8 +37,8 @@ export default {
       status: false,
 
       tableCol: [
-        {prop: "key", label: "键", width: 249},
-        {prop: "value", label: "值", width: 650},
+        {prop: "key", label: "键"},
+        {prop: "value", label: "值"},
 
       ],
 
@@ -96,6 +96,8 @@ export default {
 
 <style scoped>
 #table {
+  margin-left: 0.5%;
+  margin-top: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
 }
@@ -103,9 +105,11 @@ export default {
 #input {
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
+  margin-top: 2%;
 }
 
 #tag {
+  margin-left: 0.5%;
   font-weight:bold;
   color: #000000;
   background-color: white;
@@ -115,13 +119,19 @@ export default {
   background-color: white;
 }
 
+#div2 {
+  margin-left: 0.5%;
+}
+
 #button1 {
   color: white;
   background-color: #4ab2ee;
+  margin-bottom: 2%;
 }
 
 #button2 {
   color: #4ab2ee;
   background-color: white;
+  margin-bottom: 2%;
 }
 </style>

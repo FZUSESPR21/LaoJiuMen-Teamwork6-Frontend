@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="25">
+    <el-col :span="36">
       <el-menu
         :default-active="this.$router.path"
         router
@@ -46,7 +46,7 @@
 
 .item {
   font-weight: bold;
-  width: 160px;
+  width: 100%;
 }
 
 .item.is-active {
