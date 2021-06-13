@@ -2,7 +2,7 @@
   <div id="nav_bar">
     <img src="../../assets/soft.png" id="logo">
     <div id="nav">
-      <router-link to="/teacher/home" tag="button" >首页</router-link>
+      <router-link  to="/teacher/home" tag="button" >首页</router-link>
       <router-link to="/teacher/source" tag="button">课程资源</router-link>
       <router-link to="/teacher/activity" tag="button">课程活动</router-link>
 <!--      <router-link to="/teacher/signin" tag="button">课程签到</router-link>-->
@@ -50,14 +50,14 @@ export default {
 
 #nav{
   height: 100%;
-  width: 50%;
+  width: 60%;
   float: right;
   text-align: center;
   margin-right:10%;
 }
 button{
   height: 100%;
-  width: 100px;
+  width: 11%;
   border: none;
   background-color: white;
 }
@@ -75,12 +75,12 @@ button{
 }
 #exit{
   height:70%;
-  width: 50px;
+  width: 6%;
   float: right;
   margin-top:0.8%;
   margin-right: -15%;
-  border: 1px;
-  border-style:dotted;
+  border: solid 1px;
+
   border-block-color: black;
 }
 .router-link-active{
