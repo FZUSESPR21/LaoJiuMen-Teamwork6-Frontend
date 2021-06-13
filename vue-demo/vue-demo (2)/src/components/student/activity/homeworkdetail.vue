@@ -3,19 +3,15 @@
     <sapn id="tag">作业详情</sapn>
     <el-table id="table"
               :data="tableData"
-              style="width: 100%;"
               :row-style="{height:'100px'}"
               :show-header="status"
               border>
       <el-table-column
         v-for="(item,i) in tableCol"
         :key="i"
-        :prop="item.prop"
-        :width="item.width">
+        :prop="item.prop">
       </el-table-column>
     </el-table>
-
-    <br>
 
     <div id="div2" align="center">
       <el-input id="input" v-model="content" rows="5" type="textarea" placeholder="请输入内容" resize="none"></el-input>
@@ -95,33 +91,37 @@ export default {
 </script>
 
 <style scoped>
-#table {
-  margin-left: 0.5%;
-  margin-top: 20px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px #b3b1b1;
-}
-
 #input {
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
 
 }
 
-
 #tag {
-  margin-left: 0.5%;
+  margin-left: 1%;
   font-weight:bold;
   color: #000000;
   background-color: white;
 }
 
+#table {
+  margin-top: 2%;
+  margin-left: 3%;
+
+  width: 94%;
+}
+
 #div1 {
   background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px #b3b1b1;
+  margin-bottom: 2%;
 }
 
 #div2 {
-  margin-left: 0.5%;
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 #button1 {

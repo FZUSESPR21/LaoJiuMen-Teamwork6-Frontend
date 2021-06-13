@@ -16,7 +16,7 @@
 
     <div id="input2">
       <span id="span2">教师评语</span>
-      <el-input v-model="input2" rows="5" type="textarea" placeholder="评论内容" resize="none" readonly></el-input>
+      <el-input id="pinglun" v-model="input2" rows="5" type="textarea" placeholder="评论内容" resize="none" readonly></el-input>
     </div>
   </div>
 </template>
@@ -91,4 +91,5 @@ export default {
   margin-left: 3%;
   margin-right: 3%;
 }
+
 </style>

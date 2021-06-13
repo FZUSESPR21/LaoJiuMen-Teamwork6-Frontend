@@ -49,7 +49,7 @@
 .part{
   background-color: rgb(255, 255, 255);
   float:right;
-  width: 90%;
+  width: 89%;
 }
 
 .sidebar{

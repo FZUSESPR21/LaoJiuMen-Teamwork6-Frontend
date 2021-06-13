@@ -31,18 +31,11 @@
           </el-select>
         </el-form-item>
 
-<!--        <el-form-item label="资源内容" class="label">
-          <i class="el-icon-star-on">资源标题</i>
-          <el-input v-model="publishForm.title" placeholder="请输入资源标题" resize="none"></el-input>
-        </el-form-item>-->
-
         <el-form-item  label="资源内容" class="label">
           <i class="el-icon-star-on">上传文件</i>
-          <br>
-
+          <br/>
           <input class="file" name="file" type="file"  @change="select"/>
-
-          <p id="p">单个文件不超过20MB</p>
+          <p id="p">提示：单个文件不超过20MB</p>
         </el-form-item>
 
         <el-form-item>
@@ -51,8 +44,6 @@
         </el-form-item>
       </el-form>
     </div>
-
-
   </div>
 </template>
 

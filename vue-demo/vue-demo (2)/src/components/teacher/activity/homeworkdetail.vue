@@ -125,7 +125,7 @@ export default {
     headeRowClass({row, column, rowIndex, columnIndex}){
       //表头的背景颜色
       if(rowIndex==0){
-        return 'background:#DCDCDC; color: black';
+        return 'background:#e8e8e8; color: black';
       }
     },
 
@@ -148,6 +148,13 @@ export default {
         this.tableData2 = response.data.data.list
         this.totalCount = response.data.data.total
         console.log(this.tableData2)
+        for (var i = 0; i < this.totalCount;i++) {
+          if(this.tableData2[i].score === -2) {
+            this.tableData2[i].score = '未提交'
+          } else if (this.tableData2[i].score === -1) {
+            this.tableData2[i].score = '未批改'
+          }
+        }
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
@@ -169,11 +176,13 @@ export default {
 }
 
 #table {
+  margin-top: 2%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
 }
 
 #table1 {
+  margin-top: 2%;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
 }
@@ -195,4 +204,8 @@ export default {
   border: 2px
 }
 
+#pagination{
+  float: right;
+  margin-top: 2%;
+}
 </style>

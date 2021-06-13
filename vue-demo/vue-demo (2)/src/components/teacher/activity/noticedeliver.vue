@@ -6,6 +6,8 @@
     <div class="textitem">
       <div id="noticedeliver">
         <div id="noticehead"><p>通知内容</p></div>
+
+
           <el-form ref="form" :model="form" label-width="80px" id="noticeMessage">
             <el-form-item label="班级">
               <el-select v-model="form.clazzId" placeholder="请选择年份班级" @change="selectChange">
@@ -21,8 +23,6 @@
             <el-form-item label="标题">
               <el-input v-model="form.name" placeholder="请输入通知标题"></el-input>
             </el-form-item>
-
-
 
             <el-form-item label="内容">
               <el-input type="textarea" v-model="form.content" rows="4" placeholder="请输入通知内容" resize="none"></el-input>
@@ -121,16 +121,22 @@
   margin-left: 2%;
 }
 
+#noticedeliver {
+  margin-left: 2%;
+  margin-right: 3%;
+}
+
 #noticehead{
   font-size:21px;
   margin-left: 3%;
 }
+
+
 
 .button{
   background-color: #4ab2ee;
   color:white;
   float: right;
   margin-bottom: 2%;
-  margin-right: 3%;
 }
 </style>
