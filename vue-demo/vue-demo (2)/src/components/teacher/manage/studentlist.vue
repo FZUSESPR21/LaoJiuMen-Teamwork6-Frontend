@@ -279,7 +279,7 @@ export default {
   background-color: #4ab2ee;
 }
 #stulistbox{
-  margin-top: 10px;
+  margin-top: 15px;
   margin-left: 7px;
   margin-right: 5px;
   border: 1px solid #c2c1c1;
@@ -297,13 +297,16 @@ export default {
   margin-right: 8%;
 }
 #accounthead{
-  margin-right: 15%;
+  margin-right: 0;
 }
 #namehead{
-  margin-right: 15%;
+  margin-right:0;
 }
 #emailhead{
-  margin-right: 44%;
+  margin-right: 0;
+}
+#oprationhead{
+  margin-right: 0;
 }
 #listitem{
   height: 35px;

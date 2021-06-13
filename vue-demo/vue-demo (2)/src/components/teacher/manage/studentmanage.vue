@@ -1,7 +1,7 @@
 <template>
   <div id="box">
     <div id="head">
-      <p>学生管理</p>
+      <p class="title">学生管理</p>
       <p class="english">Student</p>
     </div>
     <div class="part">
@@ -26,7 +26,9 @@ export default {
   margin-left: 50px;
 
 }
-
+.title{
+  margin-bottom: 10px;
+}
 .english{
   color: rgb(179, 179, 179);
   margin-top: 0;
