@@ -2,18 +2,16 @@
   <el-row class="tac">
     <el-col :span="36">
       <el-menu
-        :default-active="this.$router.path"
+        default-active="/teacher/source/study"
         router
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose">
         <el-menu-item class="item" index="/teacher/source/study">
-<!--          <router-link to="/teacher/source/study" tag="button" class="button">学习资源</router-link>-->
           <span>学习资源</span>
         </el-menu-item>
 
         <el-menu-item class="item" index="/teacher/source/other">
-<!--          <router-link to="/teacher/source/other" tag="button" class="button">学习资源</router-link>-->
           <span>其他资源</span>
         </el-menu-item>
       </el-menu>
@@ -23,9 +21,6 @@
 </template>
 
 <script>
-/*export default {
-  name: "sourcebar"
-}*/
   export default {
     methods: {
       handleOpen(key, keyPath) {
@@ -40,11 +35,6 @@
 </script>
 
 <style scoped>
-/*.button{
-  background-color: white;
-  border: 2px;
-}*/
-
 .item {
   font-weight: bold;
   width: 100%;

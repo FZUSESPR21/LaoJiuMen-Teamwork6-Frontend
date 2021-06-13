@@ -8,7 +8,7 @@
         <div id="noticehead"><p>通知内容</p></div>
 
 
-          <el-form ref="form" :model="form" label-width="80px" id="noticeMessage">
+          <el-form ref="form" :model="form" :rules="rules" label-width="80px" id="noticeMessage">
             <el-form-item label="班级">
               <el-select v-model="form.clazzId" placeholder="请选择年份班级" @change="selectChange">
                 <el-option
@@ -20,16 +20,16 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="标题">
-              <el-input v-model="form.name" placeholder="请输入通知标题"></el-input>
+            <el-form-item label="标题" prop="title">
+              <el-input v-model="form.title" placeholder="请输入通知标题"></el-input>
             </el-form-item>
 
-            <el-form-item label="内容">
+            <el-form-item label="内容" prop="content">
               <el-input type="textarea" v-model="form.content" rows="4" placeholder="请输入通知内容" resize="none"></el-input>
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" plain size="mini" class="button" @click="onSubmit">发布通知</el-button>
+              <el-button type="primary" plain size="mini" class="button" @click="onSubmit(form)">发布通知</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -41,6 +41,21 @@
   export default {
     name: "noticedeliver",
     data() {
+      var validateTitle = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('标题不能为空，请输入'));
+        } else {
+          callback();
+        }
+      };
+
+      var validateContent = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('内容不能为空，请输入'));
+        } else {
+          callback();
+        }
+      };
       return {
         value1:'',
         options: [],
@@ -48,7 +63,7 @@
 
 
         form: {
-          name: '',
+          title: '',
           clazzId: '',
           date1: '',
           date2: '',
@@ -56,9 +71,15 @@
           type: [],
           resource: '',
           content: ''
+        },
+        rules: {
+          title:  { validator: validateTitle, trigger: 'blur' },
+          content: { validator: validateContent, trigger: 'blur' },
+          //time1: { validator: validateTime1, trigger: 'blur' },
+          //time2: { validator: validateTime2, trigger: 'blur' },
+        },
       }
-    }
-  },
+    },
     created() {
       this.options = JSON.parse(localStorage.getItem('clazzInfo'))
       this.form.clazzId = this.options[0].id+''
@@ -71,7 +92,7 @@
       localStorage.setItem('clazzvalue', this.form.clazzId)
     },
 
-    onSubmit() {
+    onSubmit(formName) {
       console.log('submit!');
       let info = {
         notificationName: this.form.name,
@@ -79,24 +100,28 @@
         clazzId:this.form.clazzId,
         issuer: localStorage.getItem('teacherName'),
       }
-      this.$axios({
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8'
-        },
-        data: JSON.stringify(info),
-        url: 'http://1.15.149.222:8080/coursewebsite/teacher/notice/add',
-      }).then((response) => {          //这里使用了ES6的语法
-        console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
-        alert('发布成功')
-        this.$router.push('/teacher/activity/noticelist')
-      }).catch((error) => {
-        console.log(error)       //请求失败返回的数据
-        this.tipBox = true
-      })
 
-//      this.$router.push('/teacher/activity/noticelist')
-  //    this.$router.go(0)
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios({
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json;charset=UTF-8'
+            },
+            data: JSON.stringify(info),
+            url: 'http://1.15.149.222:8080/coursewebsite/teacher/notice/add',
+          }).then((response) => {          //这里使用了ES6的语法
+            console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
+            if (response.data.code==='200') {
+              alert('发布成功')
+              this.$router.push('/teacher/activity/noticelist')
+              this.$router.go(0)
+            }
+          }).catch((error) => {
+            console.log(error)       //请求失败返回的数据
+            this.tipBox = true
+          })
+        }})
     }
   },
 
