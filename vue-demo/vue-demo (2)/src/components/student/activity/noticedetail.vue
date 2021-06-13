@@ -61,5 +61,6 @@ export default {
 
 #div1 {
   background-color: white;
+  margin-left: 1%;
 }
 </style>

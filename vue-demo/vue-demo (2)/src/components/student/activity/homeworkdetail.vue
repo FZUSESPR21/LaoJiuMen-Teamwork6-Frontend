@@ -105,8 +105,9 @@ export default {
 #input {
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
-  margin-top: 2%;
+
 }
+
 
 #tag {
   margin-left: 0.5%;

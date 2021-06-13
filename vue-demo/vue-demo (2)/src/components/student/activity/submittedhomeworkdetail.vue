@@ -4,25 +4,19 @@
       <span id="span1">提交情况</span>
     </div>
 
-    <br>
-
-    <div>
+    <div id="file">
       <i class="el-icon-folder-opened"></i>
       <span v-model="filename">{{filename}}</span>
       <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>
     </div>
 
-    <br>
-
-    <div>
-      <el-input id="input1" v-model="input1" rows="9" type="textarea" placeholder="回答的内容" resize="none" readonly></el-input>
+    <div id="input1">
+      <el-input v-model="input1" rows="9" type="textarea" placeholder="回答的内容" resize="none" readonly></el-input>
     </div>
 
-    <br>
-
-    <div>
+    <div id="input2">
       <span id="span2">教师评语</span>
-      <el-input id="input2" v-model="input2" rows="5" type="textarea" placeholder="评论内容" resize="none" readonly></el-input>
+      <el-input v-model="input2" rows="5" type="textarea" placeholder="评论内容" resize="none" readonly></el-input>
     </div>
   </div>
 </template>
@@ -60,6 +54,7 @@ export default {
 
 <style scoped>
 #div1 {
+  margin-bottom: 2%;
   background-color: white;
   border-radius: 10px;
   box-shadow: 2px 2px 10px #b3b1b1;
@@ -72,10 +67,28 @@ export default {
 
 #span1 {
   font-weight: bold;
+  margin-left: 1%;
 }
 
 #span2 {
-  font-weight: lighter;
+  font-weight: bold;
   font-size: 15px;
+}
+
+#file {
+  margin-left: 3%;
+  margin-top: 2%;
+}
+
+#input1 {
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+#input2 {
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 </style>
