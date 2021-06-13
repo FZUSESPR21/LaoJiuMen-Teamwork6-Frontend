@@ -110,6 +110,8 @@
       deleteClick(index,row) {
         this.id = row.id
         this.queryDelete()
+        /*this.$router.push('/teacher/activity/homeworklist')
+        this.$router.go(0)*/
       },
 
       headeRowClass({row, column, rowIndex, columnIndex}){
@@ -133,6 +135,10 @@
           data: JSON.stringify(info),
           url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/all?clazzId=' + this.value +'&pn='+pageNum ,
         }).then((response) => {          //这里使用了ES6的语法
+          /*console.log(JSON.stringify(response))       //请求成功返回的数据
+          alert(JSON.stringify(response))
+          alert("成功")*/
+
           console.log(response.data.data.list)
           this.tableData = response.data.data.list
           this.totalCount = response.data.data.total
@@ -186,6 +192,7 @@
 }
 
 #table {
+
   font-weight: normal;
 }
 

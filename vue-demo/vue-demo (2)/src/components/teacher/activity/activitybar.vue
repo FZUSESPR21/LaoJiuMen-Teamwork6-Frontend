@@ -1,9 +1,9 @@
 <template>
   <el-row class="tac">
-    <el-col :span="36">
+    <el-col span="36">
       <el-menu
         class="menu"
-        default-active="/teacher/activity/homeworklist"
+        :default-active="this.$router.path"
         router
         @open="handleOpen"
         @close="handleClose"

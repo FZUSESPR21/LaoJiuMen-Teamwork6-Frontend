@@ -2,7 +2,7 @@
   <el-row class="tac">
     <el-col :span="25">
       <el-menu
-        default-active="/student/activity/homeworklist"
+        :default-active="this.$router.path"
         router
         class="active-el-menu"
         @open="handleOpen"
