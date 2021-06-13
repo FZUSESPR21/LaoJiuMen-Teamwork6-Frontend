@@ -123,39 +123,52 @@ export default {
       });
     },
     getCode(){
-      let codeMessage = {
-        type:this.usermessage.type,
-        email:this.usermessage.email,
-        account:this.usermessage.account
+      const regEmail = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+      const reg = new RegExp(regEmail);
+      if(this.usermessage.type === ''){
+        alert('请选择用户类型')
       }
-      this.$axios({
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json;charset=UTF-8'
-        },
-        data: JSON.stringify(codeMessage),
-        url: 'http://1.15.149.222:8080/coursewebsite/captcha',
-      }).then((response) => {          //这里使用了ES6的语法
-        alert(JSON.stringify(response.data.message));
-        //localStorage.setItem("captcha",response.data.data);
-      }).catch((error) => {
-        console.log(error)       //请求失败返回的数据
-      })
-      // const TIME_COUNT = 60;
-      // if (!this.timer) {
-      //   this.count = TIME_COUNT;
-      //   this.show = false;
-      //   this.timer = setInterval(() => {
-      //     if (this.count > 0 && this.count <= TIME_COUNT) {
-      //       this.count--;
-      //     } else {
-      //       this.show = true;
-      //       clearInterval(this.timer);
-      //       this.timer = null;
-      //     }
-      //   }, 1000)
-      // }
-      // alert("发送信息")
+      else if(this.usermessage.email === '' || this.usermessage.account === '' ){
+        alert('邮箱或账号不能为空')
+      }
+      else if (!reg.test(this.usermessage.email)){
+        alert('请输入正确的邮箱地址')
+      }
+      else {
+        let codeMessage = {
+          type:this.usermessage.type,
+          email:this.usermessage.email,
+          account:this.usermessage.account
+        }
+        this.$axios({
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json;charset=UTF-8'
+          },
+          data: JSON.stringify(codeMessage),
+          url: 'http://1.15.149.222:8080/coursewebsite/captcha',
+        }).then((response) => {          //这里使用了ES6的语法
+          alert(JSON.stringify(response.data.message));
+          //localStorage.setItem("captcha",response.data.data);
+        }).catch((error) => {
+          console.log(error)       //请求失败返回的数据
+        })
+        // const TIME_COUNT = 60;
+        // if (!this.timer) {
+        //   this.count = TIME_COUNT;
+        //   this.show = false;
+        //   this.timer = setInterval(() => {
+        //     if (this.count > 0 && this.count <= TIME_COUNT) {
+        //       this.count--;
+        //     } else {
+        //       this.show = true;
+        //       clearInterval(this.timer);
+        //       this.timer = null;
+        //     }
+        //   }, 1000)
+        // }
+        // alert("发送信息")
+      }
     }
   }
 }
