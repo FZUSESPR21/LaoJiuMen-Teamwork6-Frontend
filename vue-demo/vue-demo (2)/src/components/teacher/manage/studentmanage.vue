@@ -1,7 +1,7 @@
 <template>
   <div id="box">
     <div id="head">
-      学生管理
+      <p>学生管理</p>
       <p class="english">Student</p>
     </div>
     <div class="part">
@@ -18,13 +18,13 @@ export default {
 
 <style scoped>
 #box{
-  margin-top: -170px;
+
 }
 #head{
   font-size: 20px;
   height: 75px;
   margin-left: 50px;
-  margin-top: 104px;
+
 }
 
 .english{
