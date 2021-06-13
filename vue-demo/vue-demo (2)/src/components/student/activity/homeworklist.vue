@@ -15,7 +15,7 @@
         show-overflow-tooltip>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" width="100">
+      <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
         </template>
@@ -38,11 +38,11 @@
     data() {
       return {
         tableCol: [
-          {prop: "title", label: "作业名称", width: 150},
-          {prop: "startAt", label: "开始时间", width: 200},
-          {prop: "endAt", label: "结束时间", width: 200},
-          {prop: "status", label: "状态", width: 150},
-          {prop: "score", label: "得分", width: 100},
+          {prop: "title", label: "作业名称"},
+          {prop: "startAt", label: "开始时间"},
+          {prop: "endAt", label: "结束时间"},
+          {prop: "status", label: "状态"},
+          {prop: "score", label: "得分"},
 
         ],
 
@@ -87,7 +87,7 @@
       headeRowClass({row, column, rowIndex, columnIndex}){
         //表头的背景颜色
         if(rowIndex==0){
-          return 'background:#DCDCDC; color: black';
+          return 'background:#e8e8e8; color: black';
         }
       },
 

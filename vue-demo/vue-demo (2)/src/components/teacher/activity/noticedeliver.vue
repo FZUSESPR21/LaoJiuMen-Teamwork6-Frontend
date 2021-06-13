@@ -1,7 +1,7 @@
 <template>
-  <el-card class="bcard">
-    <div slot="header" class="clearfix">
-      <span>发布通知</span>
+  <div id="div1">
+    <div id="divP">
+      <p class="p1">发布通知</p>
     </div>
     <div class="textitem">
       <div id="noticedeliver">
@@ -29,12 +29,12 @@
             </el-form-item>
 
             <el-form-item>
-              <el-button @click="onSubmit">发布通知</el-button>
+              <el-button type="primary" plain size="mini" class="button" @click="onSubmit">发布通知</el-button>
             </el-form-item>
           </el-form>
         </div>
       </div>
-  </el-card>
+  </div>
 </template>
 
 <script>
@@ -104,29 +104,33 @@
 </script>
 
 <style scoped>
-
-#head{
+#div1 {
   background-color: white;
-  font-size: 20px;
-  height: 100px;
+  margin-top: -1%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px #b3b1b1;
 }
-#noticedeliver{
-  margin-top:0%;
 
-  /*border-style:solid;
-  border-width:1px;
-  border-color:gray;
-  border-radius:20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);*/
+#divP {
+  background-color: #e8e8e8;
 }
+
+.p1 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 2%;
+}
+
 #noticehead{
   font-size:21px;
-  margin-top:0.2%;
-  margin-bottom:2%;
-  margin-left:7.5%;
+  margin-left: 3%;
 }
-button{
+
+.button{
   background-color: #4ab2ee;
   color:white;
+  float: right;
+  margin-bottom: 2%;
+  margin-right: 3%;
 }
 </style>

@@ -210,7 +210,8 @@ export default {
 <style scoped>
 #divSelect {
   float: right;
-  margin-top: -5%
+  margin-right: 2%;
+  margin-top: -40px
 }
 
 .button {
@@ -225,6 +226,12 @@ export default {
 
 #divAdd{
   float: right;
-  clear: left;
+  margin-right: 3%;
+  margin-top: 2%;
+}
+
+#pagination{
+  float: right;
+  margin-top: 2%;
 }
 </style>

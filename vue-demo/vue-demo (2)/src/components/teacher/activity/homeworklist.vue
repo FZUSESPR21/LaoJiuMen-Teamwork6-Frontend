@@ -188,10 +188,11 @@
 #divSelect {
   float: right;
   margin-right: 2%;
-  margin-top: -5%
+  margin-top: -40px
 }
 
 #table {
+
   font-weight: normal;
 }
 

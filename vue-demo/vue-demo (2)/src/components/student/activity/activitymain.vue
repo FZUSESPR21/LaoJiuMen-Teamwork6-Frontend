@@ -33,7 +33,7 @@
   font-size: 20px;
   height: 100px;
   background-color: white;
-  margin-top: 8%;
+
 }
 
 #head1 {

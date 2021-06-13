@@ -127,7 +127,7 @@ export default {
       headeRowClass({row, column, rowIndex, columnIndex}){
         //表头的背景颜色
         if(rowIndex==0){
-          return 'background:#DCDCDC; color: black';
+          return 'background:#e8e8e8; color: black';
         }
       },
 
@@ -197,7 +197,7 @@ export default {
 #divSelect {
   float: right;
   margin-right: 2%;
-  margin-top: -5%
+  margin-top: -40px
 }
 
 #table {
@@ -212,10 +212,13 @@ export default {
 #button1 {
   color: white;
   background-color: #4ab2ee;
-  float: left;
+  float: right;
+  margin-top: 2%;
+  margin-right: 3%;
 }
 
 #pagination{
   float: right;
+  margin-top: 2%;
 }
 </style>
