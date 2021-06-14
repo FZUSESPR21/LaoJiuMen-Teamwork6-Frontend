@@ -19,11 +19,11 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="标题">
-              <el-input v-model="form.name" placeholder="请输入通知标题"></el-input>
+            <el-form-item label="标题" prop="title">
+              <el-input v-model="form.title" placeholder="请输入通知标题"></el-input>
             </el-form-item>
 
-            <el-form-item label="内容">
+            <el-form-item label="内容" prop="content">
               <el-input type="textarea" v-model="form.content" rows="4" placeholder="请输入通知内容" resize="none"></el-input>
             </el-form-item>
 
@@ -50,6 +50,21 @@
   export default {
     name: "noticedeliver",
     data() {
+      var validateTitle = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('标题不能为空，请输入'));
+        } else {
+          callback();
+        }
+      };
+
+      var validateContent = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('内容不能为空，请输入'));
+        } else {
+          callback();
+        }
+      };
       return {
         visible: false,
         value1: '',
