@@ -155,10 +155,6 @@ export default {
           data: JSON.stringify(info),
           url: 'http://1.15.149.222:8080/coursewebsite/notice/all?clazzId='+this.value +'&pn='+pageNum,
         }).then((response) => {          //这里使用了ES6的语法
-          /*console.log(JSON.stringify(response))       //请求成功返回的数据
-          alert(JSON.stringify(response))
-          alert("成功")*/
-
           console.log(response.data.data.list)
           this.tableData = response.data.data.list
           this.totalCount = response.data.data.total
@@ -188,9 +184,8 @@ export default {
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })
-    }
-      },
-
+      }
+    },
 
     created () {
       this.options = JSON.parse(localStorage.getItem('clazzInfo'))
