@@ -34,7 +34,17 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
-            <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
+            <el-popover
+              placement="top"
+              width="160"
+              v-model="visible">
+              <p>这是一段内容这是一段内容确定删除吗？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteClick(scope.$index, scope.row), visible = false">确定</el-button>
+              </div>
+              <el-button slot="reference" size="mini" type="text" class="button" icon="el-icon-delete">删除</el-button>
+            </el-popover>
           </template>
         </el-table-column>
       </el-table>
@@ -57,6 +67,7 @@ export default {
   name: "noticelist",
   data() {
     return {
+      visible: false,
       formInline: {
       user: '',
       region: ''

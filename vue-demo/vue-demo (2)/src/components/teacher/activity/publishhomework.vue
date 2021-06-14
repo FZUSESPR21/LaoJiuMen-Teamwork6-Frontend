@@ -4,7 +4,6 @@
       <p class="p1">发布作业</p>
     </div>
 
-
     <p id="p2">作业内容</p>
     <el-dialog
       title="提示"
