@@ -32,7 +32,7 @@
                 placement="top"
                 width="160"
                 v-model="visible">
-                <p>这是一段内容这是一段内容确定删除吗？</p>
+                <p>确定发布该通知吗？</p>
                 <div style="text-align: right; margin: 0">
                   <el-button size="mini" type="text" @click="visible = false">取消</el-button>
                   <el-button type="primary" size="mini" @click="onSubmit('form'), visible=false">确定</el-button>
@@ -100,7 +100,33 @@
           issuer: localStorage.getItem('teacherName'),
         }
 
-        this.$axios({
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            this.$axios({
+              method: 'post',
+              headers: {
+                'Content-type': 'application/json;charset=UTF-8'
+              },
+              data: JSON.stringify(info),
+              url: 'http://1.15.149.222:8080/coursewebsite/teacher/notice/add',
+            }).then((response) => {          //这里使用了ES6的语法
+              console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
+              if (response.data.code==='200') {
+                alert('发布成功')
+                this.$router.push('/teacher/activity/noticelist')
+                this.$router.go(0)
+              }
+            }).catch((error) => {
+              console.log(error)       //请求失败返回的数据
+              this.tipBox = true
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+
+        /*this.$axios({
           method: 'post',
           headers: {
             'Content-type': 'application/json;charset=UTF-8'
@@ -117,7 +143,7 @@
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
           this.tipBox = true
-        })
+        })*/
 
       }
     },

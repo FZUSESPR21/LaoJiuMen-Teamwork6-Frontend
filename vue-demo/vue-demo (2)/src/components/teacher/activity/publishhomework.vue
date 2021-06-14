@@ -66,7 +66,17 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" plain size="mini" @click="publishClick('publishForm')" class="button" id="publishbutton">发布</el-button>
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visible">
+            <p>确定发布该作业吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="publishClick('publishForm'), visible=false">确定</el-button>
+            </div>
+            <el-button slot="reference" type="primary" plain size="mini" class="button" id="publishbutton">发布</el-button>
+          </el-popover>
         </el-form-item>
       </el-form>
     </div>
@@ -111,6 +121,7 @@ export default {
     };*/
 
     return {
+      visible: false,
       options: [],
       value: '',
 
