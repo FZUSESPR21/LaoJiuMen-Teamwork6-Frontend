@@ -147,8 +147,8 @@ export default {
       rules: {
         title:  { validator: validateTitle, trigger: 'blur' },
         content: { validator: validateContent, trigger: 'blur' },
-        //time1: { validator: validateTime1, trigger: 'blur' },
-        //time2: { validator: validateTime2, trigger: 'blur' },
+        /*time1: { validator: validateTime1, trigger: 'blur' },
+        time2: { validator: validateTime2, trigger: 'blur' },*/
       },
 
       tipBox: false,
@@ -180,25 +180,41 @@ export default {
 
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios({
-            method: 'post',
-            headers: {
-              'Content-type': 'application/json;charset=UTF-8'
-            },
-            data: JSON.stringify(info),
-            url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/add',
-          }).then((response) => {          //这里使用了ES6的语法
-            if (response.data.code==='200') {
-              alert('发布成功')
-              this.$router.push('/teacher/activity/homeworklist')
-              this.$router.go(0)
-            }
-            if (response.data.code === '500') {
-              alert("标题重复,请修改")
-            }
-          }).catch((error) => {
-            console.log(error)
-          })
+
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(info),
+        url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/add',
+      }).then((response) => {          //这里使用了ES6的语法
+        /*alert('LQ')
+        console.log('LQ')
+        console.log(JSON.stringify(response))       //请求成功返回的数据
+        alert(JSON.stringify(response))*/
+        if (response.data.code==='200') {
+          alert('发布成功')
+          this.$router.push('/teacher/activity/homeworklist')
+          this.$router.go(0)
+
+        }
+        console.log(response)
+        if (response.data.code==='500') {
+          //console.log(JSON.stringify(response))       //请求成功返回的数据
+          //alert(JSON.stringify(response))
+          alert("标题重复,请修改")
+
+        }
+
+
+      }).catch((error) => {
+        console.log(error)
+        //alert("标题重复,请重新输入")//请求失败返回的数据
+        // this.tipBox = true
+      })
+
+
         } else {
           console.log('error submit!!');
           return false;

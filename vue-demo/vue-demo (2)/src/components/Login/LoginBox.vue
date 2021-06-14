@@ -100,9 +100,7 @@ export default {
         }
       });
     },
-    teacherlogin:function (){
-      this.$router.push('/teacher')
-    }
+
   }
 }
 </script>

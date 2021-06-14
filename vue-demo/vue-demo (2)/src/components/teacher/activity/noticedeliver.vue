@@ -6,6 +6,7 @@
     <div class="textitem">
       <div id="noticedeliver">
         <div id="noticehead"><p>通知内容</p></div>
+
           <el-form ref="form" :model="form" :rules="rules" label-width="80px" id="noticeMessage">
             <el-form-item label="班级">
               <el-select v-model="form.clazzId" placeholder="请选择年份班级" @change="selectChange">
@@ -18,11 +19,11 @@
               </el-select>
             </el-form-item>
 
-            <el-form-item label="标题" prop="title">
-              <el-input v-model="form.title" placeholder="请输入通知标题"></el-input>
+            <el-form-item label="标题">
+              <el-input v-model="form.name" placeholder="请输入通知标题"></el-input>
             </el-form-item>
 
-            <el-form-item label="内容" prop="content">
+            <el-form-item label="内容">
               <el-input type="textarea" v-model="form.content" rows="4" placeholder="请输入通知内容" resize="none"></el-input>
             </el-form-item>
 
@@ -34,11 +35,10 @@
                 <p>这是一段内容这是一段内容确定删除吗？</p>
                 <div style="text-align: right; margin: 0">
                   <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-                  <el-button type="primary" size="mini" @click="onSubmit(form), visible=false">确定</el-button>
+                  <el-button type="primary" size="mini" @click="onSubmit('form'), visible=false">确定</el-button>
                 </div>
                 <el-button slot="reference" type="primary" plain size="mini" class="button">发布</el-button>
               </el-popover>
-
             </el-form-item>
           </el-form>
         </div>
@@ -50,24 +50,9 @@
   export default {
     name: "noticedeliver",
     data() {
-      var validateTitle = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('标题不能为空，请输入'));
-        } else {
-          callback();
-        }
-      };
-
-      var validateContent = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('内容不能为空，请输入'));
-        } else {
-          callback();
-        }
-      };
       return {
         visible: false,
-        value1:'',
+        value1: '',
         options: [],
         value: 3,
 
@@ -78,13 +63,21 @@
         },
 
         rules: {
-          title:  { validator: validateTitle, trigger: 'blur' },
-          content: { validator: validateContent, trigger: 'blur' },
-          //time1: { validator: validateTime1, trigger: 'blur' },
-          //time2: { validator: validateTime2, trigger: 'blur' },
+          title: {validator: validateTitle, trigger: 'blur'},
+          content: {validator: validateContent, trigger: 'blur'},
         },
+
+        name: '',
+        clazzId: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        content: ''
       }
     },
+
     created() {
       this.options = JSON.parse(localStorage.getItem('clazzInfo'))
       this.form.clazzId = this.options[0].id+''
@@ -92,6 +85,7 @@
         localStorage.setItem('clazzvalue', this.form.clazzId)
       else this.form.clazzId = localStorage.getItem('clazzvalue')
     },
+
     methods: {
       selectChange() {
         localStorage.setItem('clazzvalue', this.form.clazzId)
@@ -125,9 +119,9 @@
           this.tipBox = true
         })
 
-
       }
     },
+
 
 }
 </script>

@@ -2,15 +2,17 @@
   <el-row class="tac">
     <el-col :span="36">
       <el-menu
-        default-active="/student/source/study"
+        :default-active="this.$router.path"
         router
         class="el-menu-vertical-demo"
         @open="handleOpen"
         @close="handleClose">
         <el-menu-item class="item" index="/student/source/study">
+<!--          <router-link to="/student/source/study" tag="button" class="button">学习资源</router-link>-->
           <span>学习资源</span>
         </el-menu-item>
         <el-menu-item class="item" index="/student/source/other">
+<!--          <router-link to="/student/source/other" tag="button" class="button">其他资源</router-link>-->
           <span>其他资源</span>
         </el-menu-item>
       </el-menu>
