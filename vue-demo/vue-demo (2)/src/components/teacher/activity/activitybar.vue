@@ -3,7 +3,7 @@
     <el-col span="36">
       <el-menu
         class="menu"
-        :default-active="this.$router.path"
+        default-active="/teacher/activity/homeworklist"
         router
         @open="handleOpen"
         @close="handleClose"

@@ -34,7 +34,17 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button size="mini" type="text" @click="lookClick(scope.$index,scope.row)" class="button" icon="el-icon-view">查看</el-button>
-            <el-button size="mini" type="text" @click="deleteClick(scope.$index, scope.row)" class="button" icon="el-icon-delete">删除</el-button>
+            <el-popover
+              placement="top"
+              width="160"
+              v-model="visible">
+              <p>确定删除该通知吗？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteClick(scope.$index, scope.row), visible = false">确定</el-button>
+              </div>
+              <el-button slot="reference" size="mini" type="text" class="button" icon="el-icon-delete">删除</el-button>
+            </el-popover>
           </template>
         </el-table-column>
       </el-table>
@@ -57,9 +67,11 @@ export default {
   name: "noticelist",
   data() {
     return {
+
+      //visible: false,
       formInline: {
-      user: '',
-      region: ''
+        user: '',
+        region: ''
       },
       options:[],
       tableCol: [
@@ -104,16 +116,15 @@ export default {
       deliverClick(){
         this.$router.push({
           path:'/teacher/activity/noticedeliver'
-        }
-        )
-
+        })
       },
+
       deleteClick(index,row) {
         this.id = row.id
         this.queryDelete()
       },
-      lookClick(index,row) {
 
+      lookClick(index,row) {
         this.$router.push({
           path: '/teacher/activity/noticedetail',
           query: {
@@ -144,10 +155,6 @@ export default {
           data: JSON.stringify(info),
           url: 'http://1.15.149.222:8080/coursewebsite/notice/all?clazzId='+this.value +'&pn='+pageNum,
         }).then((response) => {          //这里使用了ES6的语法
-          /*console.log(JSON.stringify(response))       //请求成功返回的数据
-          alert(JSON.stringify(response))
-          alert("成功")*/
-
           console.log(response.data.data.list)
           this.tableData = response.data.data.list
           this.totalCount = response.data.data.total
@@ -177,9 +184,8 @@ export default {
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })
-    }
-      },
-
+      }
+    },
 
     created () {
       this.options = JSON.parse(localStorage.getItem('clazzInfo'))

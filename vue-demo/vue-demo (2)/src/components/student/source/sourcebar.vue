@@ -2,7 +2,7 @@
   <el-row class="tac">
     <el-col :span="36">
       <el-menu
-        :default-active="this.$router.path"
+        default-active="/student/source/study"
         router
         class="el-menu-vertical-demo"
         @open="handleOpen"
