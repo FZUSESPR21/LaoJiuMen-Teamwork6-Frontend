@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import coursePlan from "../components/teacher/source/coursePlan";
 
 const originalPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -126,7 +127,8 @@ const noticeDeliver = () =>
     import ('../components/teacher/activity/noticedeliver')
 const teacherNoticeDetail = () =>
     import ('../components/teacher/activity/noticedetail')
-
+const teacherCoursePlan = () =>
+    import ('../components/teacher/source/coursePlan')
 //1.安装插件
 Vue.use(Router)
 
@@ -281,6 +283,10 @@ const routes = [{
                         path: '/teacher/source/add',
                         component: teacherAddSource
                     },
+                    {
+                        path: '/teacher/source/courseplan',
+                        component: teacherCoursePlan
+                    }
                 ]
             },
             {
