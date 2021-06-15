@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="36">
+    <el-col>
       <el-menu
         default-active="/student/source/study"
         router

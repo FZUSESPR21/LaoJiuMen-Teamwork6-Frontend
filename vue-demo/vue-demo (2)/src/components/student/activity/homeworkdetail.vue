@@ -71,8 +71,18 @@ export default {
       })
       // url为后台接口
       instance.post('http://1.15.149.222:8080/coursewebsite/student/homework_result/submit', param)
-        .then(this.succ) // 成功返回信息 调用函数  函数需自己定义，此处后面省略
-        .catch(this.serverError) // 服务器错误 调用对应函数  函数需自己定义，此处后面省略
+        .then((response) => {          //这里使用了ES6的语法
+          /*console.log(JSON.stringify(response))       //请求成功返回的数据
+          alert(JSON.stringify(response))
+          alert("成功")*/
+          if (response.data.code === '200') {
+            alert('提交成功')
+            this.$router.push('/student/activity/submittedhomeworklist')
+            this.$router.go(0)
+          }
+        }).catch((error) => {
+          console.log(error)//请求失败返回的数据
+        })
 
 
     },

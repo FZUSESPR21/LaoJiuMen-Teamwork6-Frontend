@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col span="36">
+    <el-col>
       <el-menu
         class="menu"
         default-active="/teacher/activity/homeworklist"
