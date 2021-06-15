@@ -37,7 +37,7 @@
           <el-button size="mini" id="deleteSelbtn" @click="deleteSel">删除</el-button>
           <input class="file" name="file_excel" type="file"  @change="select"/>
           <el-button size="mini" id="uploadbtn" icon="el-icon-upload2">上传Excel生成学生列表</el-button>
-          <el-button size="mini" id="downloadbtn" icon="el-icon-download" @click="download">下载上传须知</el-button>
+          <el-button size="mini" id="downloadbtn" icon="el-icon-download" @click="handleDownLoad">下载上传须知</el-button>
           <el-button size="mini" type="primary" id="newstu" @click="createstudent">新增</el-button>
           <el-pagination
             id="pagination"
@@ -139,31 +139,29 @@ export default {
       })
     },
 
-    download() {
-      // this.$axios({
-      //   method: 'post',
-      //   url: 'http://localhost:8081/coursewebsite_war_exploded/teacher/stu_mgt/down',
-      //   // data: {},
-      //   headers:{
-      //     'Content-type': 'application/x-www-form-urlencoded',
-      //     'Authorization': localStorage.getItem('token')
-      //   },
-      //   responseType: 'arraybuffer'
-      // }).then(function (res) {
-      //   var blob = new Blob([res.data], {type: 'application/vnd.ms-excel;charset=utf-8'}); //指定格式为vnd.ms-excel
-      //   var downloadElement = document.createElement('a');
-      //   var href = window.URL.createObjectURL(blob); //创建下载的链接
-      //   downloadElement.href = href;
-      //   downloadElement.download = 'xxx.xls'; //下载后文件名
-      //   document.body.appendChild(downloadElement);
-      //   downloadElement.click(); //点击下载
-      //   document.body.removeChild(downloadElement); //下载完成移除元素
-      //   window.URL.revokeObjectURL(href); //释放掉blob对象
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
 
-      window.location.href = 'http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/down'
+    handleDownLoad() {
+      fetch('http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/down', {
+        method: 'GET',
+        headers: new Headers({
+          //自己加的头信息全都要转成string
+          'Content-type': 'application/json;charset=UTF-8',
+          'Authorization': localStorage.getItem('token')
+
+        }),
+      })
+        .then(res => res.blob())
+        .then(data => {
+          const blobUrl = window.URL.createObjectURL(data);
+          this.download2(blobUrl);
+        });
+    },
+    //模拟a标签实现下载excel文件
+    download2(blobUrl) {
+      const a = document.createElement('a');
+      a.download = '学生名单上传格式.xlsx';
+      a.href = blobUrl;
+      a.click();
     },
 
     select(e) {
@@ -175,7 +173,11 @@ export default {
       param.append('clazzId', this.clazzvalue)
       // withCredentials: true 使得后台可以接收表单数据  跨域请求
       const instance = this.$axios.create({
-        withCredentials: true
+        withCredentials: true,
+        headers:{
+          'Content-type': 'application/json;charset=UTF-8',
+          'Authorization': localStorage.getItem('token')
+        }
       })
       // url为后台接口
       instance.post('http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/excel', param)
@@ -294,19 +296,20 @@ export default {
   margin-top: 20px;
 }
 #selectAll{
-  margin-right: 8%;
+  margin-right: 10%;
 }
 #accounthead{
-  margin-right: 0;
+  margin-right: 14%;
 }
 #namehead{
-  margin-right:0;
+  margin-right:13%;
 }
 #emailhead{
   margin-right: 0;
 }
 #oprationhead{
-  margin-right: 0;
+  float: right;
+  margin-right: 6%;
 }
 #listitem{
   height: 35px;
@@ -319,7 +322,7 @@ export default {
 #item{
   background-color: #fafafa;
   float: right;
-  width: 97%;
+  width: 95%;
   height: 100%;
   border: 1px solid #dcdbdb;
   border-radius: 8px;
