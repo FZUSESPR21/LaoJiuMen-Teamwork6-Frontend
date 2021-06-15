@@ -7,7 +7,21 @@
     <div id="file">
       <i class="el-icon-folder-opened"></i>
       <span v-model="filename">{{filename}}</span>
-      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>
+<!--      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>-->
+
+     <el-popover
+        placement="top"
+        width="160"
+        v-model="visible">
+        <p>确定下载该作业文件吗？</p>
+        <div style="text-align: right; margin: 0">
+          <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+          <el-button type="primary" size="mini" @click="downloadClick, visible = false">确定</el-button>
+        </div>
+        <el-button slot="reference" type="primary" plain size="mini" id="button">下载</el-button>
+      </el-popover>
+
+<!--      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>-->
     </div>
 
     <div id="input1">
@@ -26,6 +40,8 @@ export default {
   name: "submittedhomeworkdetail",
   data() {
     return {
+      visible: false,
+
       input1: this.$route.query.content,
       input2: this.$route.query.remark,
 

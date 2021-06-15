@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac">
-    <el-col :span="36">
+    <el-col>
       <el-menu
         default-active="/teacher/source/study"
         router
@@ -15,6 +15,11 @@
         <el-menu-item class="item" index="/teacher/source/other">
 <!--          <router-link to="/teacher/source/other" tag="button" class="button">学习资源</router-link>-->
           <span>其他资源</span>
+        </el-menu-item>
+
+        <el-menu-item class="item" index="/teacher/source/courseplan">
+          <!--          <router-link to="/teacher/source/other" tag="button" class="button">学习资源</router-link>-->
+          <span>授课计划</span>
         </el-menu-item>
       </el-menu>
     </el-col>

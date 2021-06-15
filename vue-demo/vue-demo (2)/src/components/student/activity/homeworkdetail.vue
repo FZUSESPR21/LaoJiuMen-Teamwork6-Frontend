@@ -18,7 +18,19 @@
       <input class="file" name="file" type="file"  @change="select"/>
       <br>
       <br>
-      <el-button type="primary" plain size="mini" @click="submit" id="button1">提交</el-button>
+
+      <el-popover
+        placement="top"
+        width="160"
+        v-model="visible">
+        <p>确定提交吗？</p>
+        <div style="text-align: right; margin: 0">
+          <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+          <el-button type="primary" size="mini" @click="submit, visible = false">确定</el-button>
+        </div>
+        <el-button slot="reference" type="primary" plain size="mini" id="button1">提交</el-button>
+      </el-popover>
+<!--      <el-button type="primary" plain size="mini" @click="submit" id="button1">提交</el-button>-->
       <el-button type="primary" plain size="mini" @click="cancel" id="button2">取消</el-button>
     </div>
   </div>
@@ -30,6 +42,8 @@ export default {
   name: "homeworkdetail",
   data() {
     return {
+      visible: false,
+
       status: false,
 
       tableCol: [
@@ -71,8 +85,18 @@ export default {
       })
       // url为后台接口
       instance.post('http://1.15.149.222:8080/coursewebsite/student/homework_result/submit', param)
-        .then(this.succ) // 成功返回信息 调用函数  函数需自己定义，此处后面省略
-        .catch(this.serverError) // 服务器错误 调用对应函数  函数需自己定义，此处后面省略
+        .then((response) => {          //这里使用了ES6的语法
+          /*console.log(JSON.stringify(response))       //请求成功返回的数据
+          alert(JSON.stringify(response))
+          alert("成功")*/
+          if (response.data.code === '200') {
+            alert('提交成功')
+            this.$router.push('/student/activity/submittedhomeworklist')
+            this.$router.go(0)
+          }
+        }).catch((error) => {
+          console.log(error)//请求失败返回的数据
+        })
 
 
     },

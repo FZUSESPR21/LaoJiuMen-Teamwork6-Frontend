@@ -40,7 +40,18 @@
 
         <el-form-item>
           <el-button id="cancel" type="primary" plain size="mini" @click="cancelClick">取消</el-button>
-          <el-button id="publish" class="button" type="primary" plain size="mini" @click="publishClick">发布</el-button>
+
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visible">
+            <p>确定发布该资源吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="publishClick, visible = false">确定</el-button>
+            </div>
+            <el-button slot="reference" id="publish" class="button" type="primary" plain size="mini">发布</el-button>
+          </el-popover>
         </el-form-item>
       </el-form>
     </div>
@@ -52,6 +63,7 @@ export default {
   name: "addsource",
   data() {
     return {
+      visible: false,
 
       classOptions: [],
       clazzValue: '',
