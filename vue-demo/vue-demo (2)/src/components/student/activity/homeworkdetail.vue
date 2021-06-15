@@ -18,7 +18,19 @@
       <input class="file" name="file" type="file"  @change="select"/>
       <br>
       <br>
-      <el-button type="primary" plain size="mini" @click="submit" id="button1">提交</el-button>
+
+      <el-popover
+        placement="top"
+        width="160"
+        v-model="visible">
+        <p>确定提交吗？</p>
+        <div style="text-align: right; margin: 0">
+          <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+          <el-button type="primary" size="mini" @click="submit, visible = false">确定</el-button>
+        </div>
+        <el-button slot="reference" type="primary" plain size="mini" id="button1">提交</el-button>
+      </el-popover>
+<!--      <el-button type="primary" plain size="mini" @click="submit" id="button1">提交</el-button>-->
       <el-button type="primary" plain size="mini" @click="cancel" id="button2">取消</el-button>
     </div>
   </div>
@@ -30,6 +42,8 @@ export default {
   name: "homeworkdetail",
   data() {
     return {
+      visible: false,
+
       status: false,
 
       tableCol: [
