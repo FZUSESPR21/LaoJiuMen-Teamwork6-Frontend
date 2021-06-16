@@ -200,10 +200,6 @@ export default {
         data: JSON.stringify(info),
         url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/add',
       }).then((response) => {          //这里使用了ES6的语法
-        /*alert('LQ')
-        console.log('LQ')
-        console.log(JSON.stringify(response))       //请求成功返回的数据
-        alert(JSON.stringify(response))*/
         if (response.data.code==='200') {
           alert('发布成功')
           this.$router.push('/teacher/activity/homeworklist')
@@ -212,21 +208,11 @@ export default {
         }
         console.log(response)
         if (response.data.code==='500') {
-          //console.log(JSON.stringify(response))       //请求成功返回的数据
-          //alert(JSON.stringify(response))
           alert("标题重复,请修改")
-
         }
-
-
       }).catch((error) => {
         console.log(error)
-        //alert("标题重复,请重新输入")//请求失败返回的数据
-        // this.tipBox = true
-      })
-
-
-        } else {
+      })} else {
           console.log('error submit!!');
           return false;
         }
@@ -252,6 +238,8 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 #p2 {

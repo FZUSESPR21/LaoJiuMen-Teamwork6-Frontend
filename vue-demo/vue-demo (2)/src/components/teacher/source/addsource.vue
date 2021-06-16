@@ -179,6 +179,8 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .label {
