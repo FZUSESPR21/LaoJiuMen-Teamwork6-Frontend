@@ -117,6 +117,14 @@ export default {
         this.tableData = response.data.data.list
         this.totalCount = response.data.data.total
 
+        for (var i = 0; i < this.totalCount;i++) {
+          if(this.tableData[i].score === -2) {
+            this.tableData[i].score = '未提交'
+          } else if (this.tableData[i].score === -1) {
+            this.tableData[i].score = '未批改'
+          }
+        }
+
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
