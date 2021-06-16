@@ -406,7 +406,7 @@ export default {
   background-color: rgb(228, 228, 228);
 }
 .rinput{
-  margin-top:5%;
+  margin-top:-5%;
 }
 #uploadbtn{
   display: inline;

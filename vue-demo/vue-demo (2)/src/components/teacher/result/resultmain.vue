@@ -28,7 +28,7 @@ export default {
   background-color: white;
   font-size: 20px;
   height: 100%;
-  margin-top: 8%;
+  margin-top: 2%;
   margin-left: 4%;
   margin-bottom: 6%;
 }
@@ -45,7 +45,7 @@ export default {
   float: left;
   text-align: center;
   margin-left: 0%;
-  margin-top: -3%;
+  margin-top: 3%;
 }
 button{
   height: 50px;

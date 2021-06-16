@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     toInput(){
-      this.$router.push('/teacher/result/resultinput')
+      this.$router.push('/teacher/result/inputmain')
     },
     toAnalysis(){
       this.$router.push('/teacher/result/taskanalysis')
