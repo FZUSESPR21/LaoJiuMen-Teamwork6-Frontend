@@ -1,6 +1,6 @@
 <template>
   <el-row class="tac1">
-    <el-col span="36">
+    <el-col>
       <el-menu
         class="menu"
         default-active="/teacher/result/resultinput"
@@ -48,14 +48,8 @@
 </script>
 
 <style>
-/*.button{
-  background-color: white;
-  border: 2px
-
-}*/
 .tac1 {
   width: 100%;
-  margin-top:-70%;
 }
 .menu {
   width: 100%;

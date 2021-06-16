@@ -16,7 +16,7 @@
             <el-form-item label="缺勤次数" prop="absence">
               <el-input v-model="form.account" placeholder="请输入缺勤次数"></el-input>
             </el-form-item>
-            
+
             <el-form-item label="表现积极次数" prop="positive">
               <el-input v-model="form.account" placeholder="请输入表现积极次数"></el-input>
             </el-form-item>
@@ -52,7 +52,7 @@
             <el-form-item label="卷面成绩" prop="results">
               <el-input v-model="form.account" placeholder="请输入卷面成绩"></el-input>
             </el-form-item>
-<!-- 
+<!--
             <el-form-item label="总分" prop="total">
               <el-input v-model="form.account" placeholder=""></el-input>
             </el-form-item> -->
@@ -94,7 +94,7 @@
         } else {
           callback();
         }
-      }; 
+      };
       return {
         visible: false,
         value1: '',
@@ -214,7 +214,6 @@
 .p2 {
   font-size: 20px;
   font-weight: bold;
-  margin-top:-3%;
   margin-left: 2%;
   padding-top:2%;
   padding-bottom:2%;

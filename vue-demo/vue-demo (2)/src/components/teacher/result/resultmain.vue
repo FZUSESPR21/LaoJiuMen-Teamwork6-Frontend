@@ -25,12 +25,10 @@ export default {
 
 <style scoped>
 #head{
-  background-color: white;
   font-size: 20px;
-  height: 100%;
-  margin-top: 2%;
-  margin-left: 4%;
-  margin-bottom: 6%;
+  height: 70px;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 
 .english{
@@ -41,14 +39,11 @@ export default {
 
 .part{
   height: 100%;
-  width: 15%;
-  float: left;
+  float: right;
   text-align: center;
-  margin-left: 0%;
-  margin-top: 3%;
 }
+
 button{
-  height: 50px;
   width: 100%;
   border-style: solid;
   border-color: #f0eeee;
@@ -61,19 +56,4 @@ button{
     width:100%;
     height: 100%;
 }
-#noticedeliver{
-  margin-top:0%;
-  background-color: white;
-}
-#noticehead{
-  font-size:21px;
-  margin-top:0.2%;
-  margin-bottom:2%;
-  margin-left:7.5%;
-}
-.tac{
-  width:30%;
-  margin-top:10%;
-}
-
 </style>

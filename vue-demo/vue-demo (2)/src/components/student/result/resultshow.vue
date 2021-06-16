@@ -98,15 +98,6 @@ export default {
 
 
 <style>
-.text {
-  font-size: 14px;
-  width:100%;
-}
-
-.item {
-  margin-bottom: 10px;
-}
-
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -154,17 +145,12 @@ export default {
   float: left;
   background-color:rgb(255, 255, 189)
 }
-.cardgroup{
-  margin-top:5%;
-  background-color: white;
-}
+
 #head{
-  background-color: white;
   font-size: 20px;
-  height: 100%;
-  margin-top: 8%;
-  margin-left: 4%;
-  margin-bottom: 6%;
+  height: 70px;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 
 .english{
@@ -173,10 +159,7 @@ export default {
   font-size: 15px;
 }
 
-.part{
-  margin-top: -15px;
-  background-color: rgb(228, 228, 228);
-}
+
 </style>
 
 
