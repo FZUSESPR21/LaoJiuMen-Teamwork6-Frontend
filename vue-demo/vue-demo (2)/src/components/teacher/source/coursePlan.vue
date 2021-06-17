@@ -7,23 +7,23 @@
       <table id="plantable"  border="2" cellspacing="0">
         <tr>
           <td rowspan="2" width="11%" style="font-weight: bold">任课教师</td>
-          <td rowspan="2" width="11%"><el-input></el-input></td>
+          <td rowspan="2" width="11%"><el-input v-model="planMessage.teacher"></el-input></td>
           <td rowspan="2" width="11%" style="font-weight: bold">课程学分</td>
-          <td rowspan="2" width="11%"><el-input></el-input></td>
+          <td rowspan="2" width="11%"><el-input v-model="planMessage.credit"></el-input></td>
           <td height="50" width="11%" style="font-weight: bold">总学时</td>
           <td width="11%" style="font-weight: bold">理论</td>
           <td width="11%" style="font-weight: bold">实践</td>
           <td rowspan="2" width="11%" style="font-weight: bold">开课对象</td>
-          <td rowspan="2" width="11%"><el-input></el-input></td>
+          <td rowspan="2" width="11%"><el-input v-model="planMessage.object"></el-input></td>
         </tr>
         <tr>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
+          <td><el-input v-model="planMessage.totalPeriod"></el-input></td>
+          <td><el-input v-model="planMessage.theory"></el-input></td>
+          <td><el-input v-model="planMessage.practice"></el-input></td>
         </tr>
         <tr>
           <td height="50" style="font-weight: bold">起止周数</td>
-          <td colspan="8"><el-input></el-input></td>
+          <td colspan="8"><el-input v-model="planMessage.lastWeeks"></el-input></td>
         </tr>
 
 
@@ -32,6 +32,7 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.goal"
             type="textarea"
             :rows="4"
             placeholder="请输入教学目的">
@@ -43,6 +44,7 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.arrange"
             type="textarea"
             :rows="4"
             placeholder="请输入课程教学的总体安排">
@@ -54,6 +56,7 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.appraisal"
             type="textarea"
             :rows="4"
             placeholder="请输入教学方法及考核方案">
@@ -75,82 +78,12 @@
           <td>主讲教师</td>
           <td colspan="4">课程链接（备注）</td>
         </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>福州大学课程平台</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>中国大学MOOC平台（爱课程）</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>福州大学雨课堂</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>福州大学学堂云</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>超星“一平三端”智慧教学平台</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>超星尔雅</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>学银在线</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>智慧树在线教育平台</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>国家虚拟仿真实验教学项目工作网</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>Moodle</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
-        </tr>
-        <tr>
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"></input>腾讯课堂</td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td><el-input></el-input></td>
-          <td colspan="4"><el-input></el-input></td>
+        <tr v-for="(item,index) in planMessage.platforms">
+          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"  @change="select(index)"></input>{{item.platName}}</td>
+          <td><el-input v-model="item.name"></el-input></td>
+          <td><el-input v-model="item.school"></el-input></td>
+          <td><el-input v-model="item.teacher"></el-input></td>
+          <td colspan="4"><el-input v-model="item.link"></el-input></td>
         </tr>
 
 
@@ -163,9 +96,9 @@
           <td colspan="5">其他</td>
         </tr>
         <tr>
-          <td colspan="2" height="50"><el-input></el-input></td>
-          <td colspan="2" ><el-input></el-input></td>
-          <td colspan="5"><el-input></el-input></td>
+          <td colspan="2" height="50"><el-input v-model="planMessage.QQGrouqp"></el-input></td>
+          <td colspan="2" ><el-input v-model="planMessage.WechatGroup"></el-input></td>
+          <td colspan="5"><el-input v-model="planMessage.otherGroup"></el-input></td>
         </tr>
         <tr>
           <td colspan="9" height="20" bgcolor="#e0e0e0"></td>
@@ -178,7 +111,7 @@
         <tr>
           <td colspan="9" height="50" align="left">
             教材类型：
-            <el-radio-group>
+            <el-radio-group v-model="planMessage.bookType">
               <el-radio :label="1">教育部国家级规划教材</el-radio>
               <el-radio :label="2">省部级规划教材</el-radio>
               <el-radio :label="3">教育部国家级精品教材</el-radio>
@@ -190,7 +123,7 @@
         <tr>
           <td colspan="9" height="50" align="left">
             课程教材使用情况：
-            <el-radio-group>
+            <el-radio-group v-model="planMessage.bookCondition">
               <el-radio :label="1">选用</el-radio>
               <el-radio :label="2">自编</el-radio>
               <el-radio :label="3">无</el-radio>
@@ -200,7 +133,7 @@
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于马工程教材：
-            <el-radio-group>
+            <el-radio-group v-model="planMessage.isMagong">
               <el-radio :label="1">是</el-radio>
               <el-radio :label="2">无</el-radio>
             </el-radio-group>
@@ -209,7 +142,7 @@
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于哲学社会科学教材：
-            <el-radio-group>
+            <el-radio-group v-model="planMessage.isZexue">
               <el-radio :label="1">是</el-radio>
               <el-radio :label="2">无</el-radio>
             </el-radio-group>
@@ -218,7 +151,7 @@
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于境外原本教材：
-            <el-radio-group>
+            <el-radio-group v-model="planMessage.isForeign">
               <el-radio :label="1">是</el-radio>
               <el-radio :label="2">无</el-radio>
             </el-radio-group>
@@ -227,11 +160,11 @@
         <tr>
           <td colspan="9" height="100">
             <p></p>
-            教材名称：<input id="bookname"></input><p></p>
-            出版社：<input id="bookpress"></input><p></p>
-            教材编者：<input id="bookauthor"></input><p></p>
-            教材版本：<input id="bookversion"></input><p></p>
-            出版时间：<input id="pulishtime"></input><p></p>
+            教材名称：<input id="bookname" v-model="planMessage.bookName"></input><p></p>
+            出版社：<input id="bookpress" v-model="planMessage.bookPress"></input><p></p>
+            教材编者：<input id="bookauthor" v-model="planMessage.bookAuthor"></input><p></p>
+            教材版本：<input id="bookversion" v-model="planMessage.bookVersion"></input><p></p>
+            出版时间：<input id="pulishtime" v-model="planMessage.publishTime"></input><p></p>
           </td>
         </tr>
 
@@ -275,7 +208,7 @@
           <td height="25">授课教师</td>
           <td>辅导教师</td>
         </tr>
-        <tr v-for="row in tableData">
+        <tr v-for="row in planMessage.tableData">
           <td height="50"><el-input v-model="row.clazzTime"></el-input></td>
           <td><el-input v-model="row.weekTime"></el-input></td>
           <td><el-input v-model="row.date"></el-input></td>
@@ -292,7 +225,7 @@
         <el-button id="addbtn" type="text" @click="addData">添加数据</el-button>
       </div>
       <el-divider></el-divider>
-      <el-button type="primary">确定</el-button>
+      <el-button type="primary" @click="submit">确定</el-button>
       <div id="aa"></div>
     </div>
   </div>
@@ -303,22 +236,142 @@ export default {
   name: "coursePlan",
   data(){
     return{
-      tableData:[
-        {
-          clazzTime:'',
-          weekTime:'',
-          date:'',
-          contend:'',
-          form:'',
-          time:'',
-          lecture:'',
-          tutor:'',
-          place:''
-        }
-      ],
+      planMessage:{
+        teacher:'',
+        credit:'',
+        totalPeriod:'',
+        theory:'',
+        practice:'',
+        object:'',
+        lastWeeks:'',
+        goal:'',
+        arrange:'',
+        appraisal:'',
+        platforms:[
+          {
+            platName:'福州大学课程平台',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'中国大学MOOC平台（爱课程）',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'福州大学雨课堂',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'福州大学学堂云',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'超星“一平三端“智慧教学平台',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'超星尔雅',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'学银在线',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'智慧树在线教育平台',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'国家虚拟仿真实验教学项目工作网',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'Moodle',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+          {
+            platName:'腾讯课堂',
+            name:'',
+            school:'',
+            teacher:'',
+            link:''
+          },
+        ],
+        selectPlatform:[],
+        QQGrouqp:'',
+        WechatGroup:'',
+        otherGroup:'',
+        bookType:'',
+        bookCondition:'',
+        isMagong:'',
+        isZexue:'',
+        isForeign:'',
+        bookName:'',
+        bookPress:'',
+        bookAuthor:'',
+        bookVersion:'',
+        publishTime:'',
+        tableData:[
+          {
+            clazzTime:'',
+            weekTime:'',
+            date:'',
+            contend:'',
+            form:'',
+            time:'',
+            lecture:'',
+            tutor:'',
+            place:''
+          }
+        ],
+      }
     }
   },
   methods:{
+    submit(){
+      const planMessage = this.planMessage
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'charset=UTF-8'
+        },
+        data: planMessage,
+        url: 'http://localhost:8081/coursewebsite_war_exploded/teacher/resource/upload_plan',
+      }).then((response) => {          //这里使用了ES6的语法
+        console.log(response.data)
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+    },
     addData() {
       let row = {
         clazzTime:'',
@@ -332,6 +385,19 @@ export default {
         place:''
       }
       this.tableData.push(row)
+    },
+    select(index){
+      let cnt = 0;
+      for (let i = 0;i < this.planMessage.selectPlatform.length;i++){
+        if (this.planMessage.selectPlatform[i].platName === this.planMessage.platforms[index].platName){
+          cnt = 1
+          this.planMessage.selectPlatform.splice(i,1)
+          break
+        }
+      }
+      if (cnt === 0) {
+        this.planMessage.selectPlatform.push(this.planMessage.platforms[index])
+      }
     }
   }
 }
