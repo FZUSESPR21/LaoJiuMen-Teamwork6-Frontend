@@ -133,6 +133,13 @@ export default {
       instance.post('http://1.15.149.222:8080/coursewebsite/teacher/resource/upload', param)
         .then((response) => {
           console.log(response.data)
+
+          if (response.data.code==='200') {
+            alert('上传成功')
+            this.$router.push('/teacher/source/study')
+            this.$router.go(0)
+
+          }
           // this.$router.push('/teacher/manage/studentlist')
           // this.$router.go(0)
         }) // 成功返回信息 调用函数  函数需自己定义，此处后面省略
@@ -172,6 +179,8 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .label {
