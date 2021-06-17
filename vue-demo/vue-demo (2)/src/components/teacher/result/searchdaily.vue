@@ -43,7 +43,7 @@ export default {
       tableCol: [
         {prop: "abs", label: "该生在本课程网站上签到的缺勤次数"},
 
-        {label: "该生在本课程网站上的作业得分情况"},
+       // {label: "该生在本课程网站上的作业得分情况"},
         //{prop: "id", label: "id"},
         {prop: "hw1", label: "第一次作业"},
         {prop: "hw2", label: "第二次作业"},
@@ -90,7 +90,7 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-       //   url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/down?numId='+ localStorage.getItem('numvalue') ,
+       //   url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/homework?numId='+ localStorage.getItem('numvalue') ,
         }).then((response) => {          //这里使用了ES6的语法
           console.log(response.data.data.list)
           this.tableData = response.data.data.list

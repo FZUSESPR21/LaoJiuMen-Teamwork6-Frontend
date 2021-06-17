@@ -14,43 +14,43 @@
             </el-form-item>
 
             <el-form-item label="缺勤次数" prop="absence">
-              <el-input v-model="form.account" placeholder="请输入缺勤次数"></el-input>
+              <el-input v-model="form.absence" placeholder="请输入缺勤次数"></el-input>
             </el-form-item>
             
             <el-form-item label="表现积极次数" prop="positive">
-              <el-input v-model="form.account" placeholder="请输入表现积极次数"></el-input>
+              <el-input v-model="form.positive" placeholder="请输入表现积极次数"></el-input>
             </el-form-item>
 
             <el-form-item label="小测获得A" prop="getA">
-              <el-input v-model="form.account" placeholder="请输入小测获得A次数"></el-input>
+              <el-input v-model="form.getA" placeholder="请输入小测获得A次数"></el-input>
             </el-form-item>
 
             <el-form-item label="小测获得B" prop="getB">
-              <el-input v-model="form.account" placeholder="请输入小测获得B次数"></el-input>
+              <el-input v-model="form.getB" placeholder="请输入小测获得B次数"></el-input>
             </el-form-item>
 
             <el-form-item label="小测获得C" prop="getC">
-              <el-input v-model="form.account" placeholder="请输入小测获得C次数"></el-input>
+              <el-input v-model="form.getC" placeholder="请输入小测获得C次数"></el-input>
             </el-form-item>
 
             <el-form-item label="小测获得D" prop="getD">
-              <el-input v-model="form.account" placeholder="请输入小测获得D次数"></el-input>
+              <el-input v-model="form.getD" placeholder="请输入小测获得D次数"></el-input>
             </el-form-item>
 
             <el-form-item label="小测获得F" prop="getF">
-              <el-input v-model="form.account" placeholder="请输入小测获得D次数"></el-input>
+              <el-input v-model="form.getF" placeholder="请输入小测获得D次数"></el-input>
             </el-form-item>
 
             <el-form-item label="作业最终分数" prop="homeworkScore">
-              <el-input v-model="form.account" placeholder="请输入作业最终分数"></el-input>
+              <el-input v-model="form.homeworkScore" placeholder="请输入作业最终分数"></el-input>
             </el-form-item>
 
             <el-form-item label="作业缺交次数" prop="homeworkMiss">
-              <el-input v-model="form.account" placeholder="请输入作业缺交次数"></el-input>
+              <el-input v-model="form.homeworkMiss" placeholder="请输入作业缺交次数"></el-input>
             </el-form-item>
 
             <el-form-item label="卷面成绩" prop="results">
-              <el-input v-model="form.account" placeholder="请输入卷面成绩"></el-input>
+              <el-input v-model="form.results" placeholder="请输入卷面成绩"></el-input>
             </el-form-item>
 <!-- 
             <el-form-item label="总分" prop="total">
@@ -80,21 +80,22 @@
   export default {
     name: "inputsingle",
     data() {
-       var validateTitle = (rule, value, callback) => {
+       var validateNumber = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('标题不能为空，请输入'));
+          return callback(new Error('学号不能为空，请输入'));
         } else {
           callback();
         }
       };
 
-      var validateContent = (rule, value, callback) => {
+      var validateResults = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('内容不能为空，请输入'));
+          return callback(new Error('期末成绩不能为空，请输入'));
         } else {
           callback();
         }
       }; 
+      
       return {
         visible: false,
         value1: '',
@@ -103,13 +104,24 @@
 
 
         form: {
-          title: '',
-          content: ''
+          number: '',
+          absence: '',
+          positive: '',
+          absence: '',
+          number: '',
+          getA: '',
+          getB: '',
+          getC: '',
+          getD: '',
+          getF: '',
+          homeworkScore: '',
+          homeworkMiss: '',
+          results: ''
         },
 
         rules: {
-          title: {validator: validateTitle, trigger: 'blur'},
-          content: {validator: validateContent, trigger: 'blur'},
+          number: {validator: validateNumber, trigger: 'blur'},
+          results: {validator: validateResults, trigger: 'blur'},
         },
 
         name: '',
@@ -139,8 +151,16 @@
       onSubmit(formName) {
         console.log('submit!');
         let info = {
-          notificationName: this.form.title,
-          content: this.form.content,
+          sid: this.form.number,
+          absence: this.form.absence,
+          getA: this.form.getA,
+          getB: this.form.getB,
+          getC: this.form.getC,
+          getD: this.form.getD,
+          getF: this.form.getF,
+          homeworkScore: this.form.homeworkScore,
+          homeworkMiss: this.form.homeworkMiss,
+          results: this.form.results,
           clazzId:this.form.clazzId,
           issuer: localStorage.getItem('teacherName'),
         }
@@ -153,11 +173,11 @@
                 'Content-type': 'application/json;charset=UTF-8'
               },
               data: JSON.stringify(info),
-              url: 'http://1.15.149.222:8080/coursewebsite/teacher/result/add',
+              url: 'http://1.15.149.222:8080/coursewebsite/teacher/result/score/update',
             }).then((response) => {          //这里使用了ES6的语法
               console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
               if (response.data.code==='200') {
-                alert('发布成功')
+                alert('上传成功')
                 this.$router.push('/teacher/result/resultlist')
                 this.$router.go(0)
               }
