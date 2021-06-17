@@ -148,26 +148,6 @@ export default {
 </style>
 
 <style scoped>
-#head{
-  background-color: white;
-  font-size: 20px;
-  height: 100px;
-  margin-top: 8%;
-}
-
-.english{
-  color: rgb(179, 179, 179);
-  margin-top: 0;
-  font-size: 15px;
-}
-
-.part{
-  margin-top: -4%;
-  background-color: rgb(228, 228, 228);
-}
-.rinput{
-  margin-top:-5%;
-}
 #uploadbtn{
   display: inline;
   margin-left: -178px;

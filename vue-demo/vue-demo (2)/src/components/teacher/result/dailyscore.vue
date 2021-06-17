@@ -129,7 +129,7 @@ export default {
         })
       },
 
-   
+
     },
 
     created () {
@@ -149,10 +149,6 @@ export default {
   float: right;
   margin-right: 2%;
   margin-top: -40px
-}
-
-.dailypro{
-  margin-top:-5%
 }
 
 #dailytable {

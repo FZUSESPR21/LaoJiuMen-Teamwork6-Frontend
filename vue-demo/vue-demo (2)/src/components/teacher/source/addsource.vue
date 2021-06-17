@@ -48,7 +48,7 @@
             <p>确定发布该资源吗？</p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="publishClick, visible = false">确定</el-button>
+              <el-button type="primary" size="mini" @click="publishClick">确定</el-button>
             </div>
             <el-button slot="reference" id="publish" class="button" type="primary" plain size="mini">发布</el-button>
           </el-popover>
@@ -123,13 +123,29 @@ export default {
       param.append('type',this.typeValue)// 添加form表单中其他数据
       // withCredentials: true 使得后台可以接收表单数据  跨域请求
       const instance = this.$axios.create({
-        withCredentials: true
+        withCredentials: true,
+        headers:{
+          'Content-type': 'application/json;charset=UTF-8',
+          'Authorization': localStorage.getItem('token')
+        }
       })
       // url为后台接口
       instance.post('http://1.15.149.222:8080/coursewebsite/teacher/resource/upload', param)
-        .then(this.succ)// 成功返回信息 调用函数  函数需自己定义，此处后面省略
-        .catch(this.serverError) // 服务器错误 调用对应函数  函数需自己定义，此处后面省略
+        .then((response) => {
+          console.log(response.data)
 
+          if (response.data.code==='200') {
+            alert('上传成功')
+            this.$router.push('/teacher/source/study')
+            this.$router.go(0)
+
+          }
+          // this.$router.push('/teacher/manage/studentlist')
+          // this.$router.go(0)
+        }) // 成功返回信息 调用函数  函数需自己定义，此处后面省略
+        .catch((error) => {
+          console.log(error)       //请求失败返回的数据
+        })
 
     }
   }
@@ -163,6 +179,8 @@ export default {
   font-size: 15px;
   font-weight: bold;
   margin-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .label {

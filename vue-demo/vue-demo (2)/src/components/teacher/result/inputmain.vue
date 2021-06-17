@@ -36,33 +36,14 @@ export default {
 
 
 <style scoped>
-#head{
-  font-size: 20px;
-  height: 75px;
-  margin-left: 50px;
-  margin-top: 20px;
-}
-
-#head1 {
-  margin-bottom: 10px;
-}
-
-#head2 {
-  color: rgb(179, 179, 179);
-  margin-top: 0;
-  font-size: 15px;
-}
-
 .part1{
   background-color: rgb(255, 255, 255);
-  float:left;
-  width: 90%;
-  margin-left: 15%;
-  margin-top: -11.5%;
+  float:right;
+  width: 85%;
 }
 
 .sidebar1{
   float: left;
-  width: 10%;
+  width: 15%;
 }
 </style>
