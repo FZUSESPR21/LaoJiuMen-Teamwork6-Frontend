@@ -37,7 +37,7 @@
           </el-form-item>
 
           <el-form-item id="publishButton">
-            <el-button type="primary" plain size="mini" @click="publishClick" class="button">批改</el-button>
+            <el-button type="primary" plain size="mini" @click="publishClick('markForm')" class="button">批改</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -96,6 +96,9 @@ export default {
       hwId: this.$route.query.hwId,
       filename: this.$route.query.filepath.split("\\")[this.$route.query.filepath.split("\\").length-1],
 
+      hwName: this.$route.query.hwName,
+      hwEndDate: this.$route.query.hwEndDate,
+      hwContent: this.$route.query.hwContent,
     }
   },
   methods: {
@@ -103,14 +106,8 @@ export default {
       this.queryDownload()
     },
 
-    publishClick() {
-      this.queryUpdate()
-      this.$router.push({
-        path: '/teacher/activity/homeworkdetail',
-        query: {
-          hwId: this.hwId,
-        }
-      })
+    publishClick(formName) {
+      this.queryUpdate(formName)
     },
 
     queryDownload() {
@@ -141,14 +138,42 @@ export default {
       window.location.href = 'http://1.15.149.222:8080/coursewebsite/homework_result/download?id='+this.id;
     },*/
 
-    queryUpdate() {
+    queryUpdate(formName) {
       let info = {
         score: this.markForm.mark,
         remark: this.commentForm.comment,
         id: this.id
       }
 
-      this.$axios({
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$axios({
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json;charset=UTF-8'
+            },
+            data: JSON.stringify(info),
+            url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework_result/update' ,
+          }).then((response) => {          //这里使用了ES6的语法
+            if (response.data.code==='200') {
+              alert('发布成功')
+              this.$router.push({
+                path: '/teacher/activity/homeworkdetail',
+                query: {
+                  hwId: this.hwId,
+
+                  hwName: this.hwName,
+                  hwEndDate: this.hwEndDate,
+                  hwContent: this.hwContent,
+                }
+              })
+              this.$router.go(0)
+            }
+          }).catch((error) => {
+            console.log(error)       //请求失败返回的数据
+          })
+        }})
+      /*this.$axios({
         method: 'post',
         headers: {
           'Content-type': 'application/json;charset=UTF-8'
@@ -156,15 +181,15 @@ export default {
         data: JSON.stringify(info),
         url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework_result/update' ,
       }).then((response) => {          //这里使用了ES6的语法
-        /*console.log(JSON.stringify(response))       //请求成功返回的数据
+        /!*console.log(JSON.stringify(response))       //请求成功返回的数据
         alert(JSON.stringify(response))
-        alert("成功")*/
+        alert("成功")*!/
 
         console.log(response.data.data.list)
         this.tableData = response.data.data.list
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
-      })
+      })*/
     },
 
   },

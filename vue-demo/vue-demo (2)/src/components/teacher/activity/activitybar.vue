@@ -23,6 +23,10 @@
 <!--          <router-link to="/teacher/activity/noticelist" tag="button" class="button">通知列表</router-link>-->
           <span>通知列表</span>
         </el-menu-item>
+
+        <el-menu-item class="item" index="/teacher/activity/test">
+          <span>课程小测</span>
+        </el-menu-item>
       </el-menu>
     </el-col>
   </el-row>

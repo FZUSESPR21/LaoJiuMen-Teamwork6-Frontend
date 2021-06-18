@@ -204,7 +204,6 @@ export default {
           alert('发布成功')
           this.$router.push('/teacher/activity/homeworklist')
           this.$router.go(0)
-
         }
         console.log(response)
         if (response.data.code==='500') {

@@ -71,16 +71,16 @@ export default {
       ],
 
       tableData: [
-        {key: "标题：", value: this.$route.query.name},
-        {key: "截止时间：", value: this.$route.query.endDate},
-        {key: "作业内容：", value: this.$route.query.content},
+        {key: "标题：", value: this.$route.query.hwName},
+        {key: "截止时间：", value: this.$route.query.hwEndDate},
+        {key: "作业内容：", value: this.$route.query.hwContent},
 
       ],
 
       tableCol2: [
         {prop: "account", label: "学号"},
         {prop: "studentName", label: "姓名"},
-        {prop: "submittedAt", label: "提交时间"},
+        //{prop: "submittedAt", label: "提交时间"},
         {prop: "score", label: "提交情况"},
 
       ],
@@ -90,6 +90,10 @@ export default {
       ],
 
       hwId: this.$route.query.hwId,
+
+      hwName: this.$route.query.hwName,
+      hwEndDate: this.$route.query.hwEndDate,
+      hwContent: this.$route.query.hwContent,
       pagesize: 5,
       //当前页码
       currentPage: 1,
@@ -117,8 +121,11 @@ export default {
           content: row.content,
           id: row.id,
           hwId: this.hwId,
-          filepath: row.filePath
+          filepath: row.filePath,
 
+          hwName: this.hwName,
+          hwEndDate: this.hwEndDate,
+          hwContent: this.hwContent,
         }
       })
     },

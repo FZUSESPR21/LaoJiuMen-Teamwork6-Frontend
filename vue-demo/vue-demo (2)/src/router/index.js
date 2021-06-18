@@ -139,6 +139,10 @@ const teacherNoticeDetail = () =>
     import ('../components/teacher/activity/noticedetail')
 const teacherCoursePlan = () =>
     import ('../components/teacher/source/coursePlan')
+
+//小测
+const teacherTest = () =>
+  import ('../components/teacher/activity/test')
     //1.安装插件
 Vue.use(Router)
 
@@ -338,6 +342,10 @@ const routes = [{
                     {
                         path: '/teacher/activity/noticedetail',
                         component: teacherNoticeDetail
+                    },
+                    {
+                      path: '/teacher/activity/test',
+                      component: teacherTest
                     },
                 ]
             },

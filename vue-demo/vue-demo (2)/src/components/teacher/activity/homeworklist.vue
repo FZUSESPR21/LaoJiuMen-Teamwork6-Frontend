@@ -114,9 +114,9 @@
           path: '/teacher/activity/homeworkdetail',
           query: {
             hwId: row.id,
-            name: row.title,
-            endDate: row.endAt,
-            content: this.tableData[index].content
+            hwName: row.title,
+            hwEndDate: row.endAt,
+            hwContent: this.tableData[index].content
           }
         })
       },
