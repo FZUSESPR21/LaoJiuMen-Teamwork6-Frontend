@@ -42,13 +42,9 @@ export default {
 <style scoped>
 #head{
   font-size: 20px;
-  height: 75px;
+  height: 70px;
   margin-left: 50px;
   margin-top: 20px;
-}
-
-#head1 {
-  margin-bottom: 10px;
 }
 
 #head2 {

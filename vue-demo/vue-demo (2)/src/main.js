@@ -23,7 +23,7 @@ axios.interceptors.request.use((request) => {
 });
 
 axios.interceptors.response.use(function (response) {
-  if (response.data.code === '401' && response.data.message !== '账号或密码错误！' && response.data.message !== '账号或邮箱错误') {
+  if (response.data.code === '401') {
     localStorage.clear();
     router.push('/login');
   } else {
