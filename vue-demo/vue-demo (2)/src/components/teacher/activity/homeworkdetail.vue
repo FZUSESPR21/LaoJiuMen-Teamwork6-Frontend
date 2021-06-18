@@ -27,8 +27,7 @@
                 :data="tableData2"
                 stripe
                 style="width: 100%"
-                :header-cell-style="headeRowClass"
-                :cell-style="cellStyle">
+                :header-cell-style="headeRowClass">
         <el-table-column
           v-for="(item,i) in tableCol2"
           :key="i"
@@ -130,13 +129,6 @@ export default {
       }
     },
 
-    cellStyle(row,column,rowIndex,columnIndex){//根据报警级别显示颜色
-      // console.log(row);
-      // console.log(row.column);
-      if(row.column.label === "提交情况"&&row.row.score==="未提交"){
-        return 'color:red'
-      }
-    },
 
     queryResult(pageNum) {
       let info = {

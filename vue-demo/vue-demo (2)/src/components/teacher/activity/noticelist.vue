@@ -37,12 +37,11 @@
             <el-popover
               placement="top"
               width="160"
-              v-model="visible"
-              :ref="`popover-${scope.$index}`">
+              v-model="visible">
               <p>确定删除该通知吗？</p>
               <div style="text-align: right; margin: 0">
-                <el-button size="mini" type="text" @click="cancelBtn(scope)">取消</el-button>
-                <el-button type="primary" size="mini" @click="deleteClick(scope.$index, scope.row)">确定</el-button>
+                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="deleteClick(scope.$index, scope.row), visible = false">确定</el-button>
               </div>
               <el-button slot="reference" size="mini" type="text" class="button" icon="el-icon-delete">删除</el-button>
             </el-popover>
@@ -123,10 +122,6 @@ export default {
       deleteClick(index,row) {
         this.id = row.id
         this.queryDelete()
-      },
-
-      cancelBtn (scope) {
-        scope._self.$refs[`popover-${scope.$index}`].doClose()
       },
 
       lookClick(index,row) {

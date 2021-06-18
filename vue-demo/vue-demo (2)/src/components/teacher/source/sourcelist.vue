@@ -29,9 +29,13 @@ export default {
 <style scoped>
 #head{
   font-size: 20px;
-  height: 70px;
+  height: 75px;
   margin-left: 50px;
   margin-top: 20px;
+}
+
+#head1 {
+  margin-bottom: 10px;
 }
 
 #head2 {
@@ -44,7 +48,6 @@ export default {
   background-color: rgb(255, 255, 255);
   float:right;
   width: 90%;
-
 }
 
 .sidebar{

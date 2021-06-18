@@ -15,7 +15,7 @@
 
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button type="text" size="mini" @click="downloadClick(scope.$index,scope.row)" id="downloadbutton" icon="el-icon-download">下载</el-button>
+          <el-button type="text" size="mini" @click="downloadClick(scope.$index)" id="downloadbutton" icon="el-icon-download">下载</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -48,7 +48,6 @@ export default {
 
       cId: localStorage.clazzId,
       id: '',
-      name: '',
       pagesize: 5,
       //当前页码
       currentPage: 1,
@@ -74,10 +73,9 @@ export default {
       }
     },
 
-    downloadClick(index,row) {
+    downloadClick(index) {
       this.id = this.tableData[index].id
-      this.name = row.resourceName
-      this.queryDownload()
+      this.querySearch()
     },
 
     queryView(pageNum) {
@@ -102,34 +100,10 @@ export default {
       })
     },
 
-    queryDownload() {
-      fetch('http://1.15.149.222:8080/coursewebsite/resource/download?id='+this.id, {
-        method: 'GET',
-        headers: new Headers({
-          //自己加的头信息全都要转成string
-          'Content-type': 'application/json;charset=UTF-8',
-          'Authorization': localStorage.getItem('token')
-
-        }),
-      })
-        .then(res => res.blob())
-        .then(data => {
-          const blobUrl = window.URL.createObjectURL(data);
-          this.download2(blobUrl);
-        });
-    },
-    //模拟a标签实现下载excel文件
-    download2(blobUrl) {
-      const a = document.createElement('a');
-      a.download = this.name;
-      a.href = blobUrl;
-      a.click();
-    },
-
-    /*querySearch() {
+    querySearch() {
       window.location.href = 'http://1.15.149.222:8080/coursewebsite/resource/download?id='+this.id;
 
-    },*/
+    },
 
   },
   created () {

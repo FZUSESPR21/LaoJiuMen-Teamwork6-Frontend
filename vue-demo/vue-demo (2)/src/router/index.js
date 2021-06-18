@@ -84,33 +84,23 @@ const createclass = () =>
     import ('../components/teacher/manage/createclass')
 
 const tchcommentlist = () =>
-    import ('../components/teacher/comment/commentlist')
+  import ('../components/teacher/comment/commentlist')
 const tchcommentdetail = () =>
-    import ('../components/teacher/comment/commentdetail')
+  import ('../components/teacher/comment/commentdetail')
 const tchowncommentlist = () =>
-    import ('../components/teacher/comment/owncommentlist')
+  import ('../components/teacher/comment/owncommentlist')
 const tchowncommentdetail = () =>
-    import ('../components/teacher/comment/owncommentdetail')
+  import ('../components/teacher/comment/owncommentdetail')
 
 /*教师成绩页面跳转路由*/
-const TeacherInputMain = () =>
-    import ('../components/teacher/result/inputmain')
+const TeacherResultInput = () =>
+    import ('../components/teacher/result/resultinput')
 const TeacherResultList = () =>
     import ('../components/teacher/result/resultlist')
 const TeacherResultTaskAnalysis = () =>
     import ('../components/teacher/result/taskanalysis')
 const TeacherResultFinalAnalysis = () =>
     import ('../components/teacher/result/finalanalysis')
-
-const TeacherResultInput = () =>
-    import ('../components/teacher/result/resultinput')
-const TeacherDailyScore = () =>
-    import ('../components/teacher/result/dailyscore')
-const TeacherInputSingle = () =>
-    import ('../components/teacher/result/inputsingle')
-const TeacherSearchDaily = () =>
-    import ('../components/teacher/result/searchdaily')
-
 
 // 教师作业页面跳转路由
 const teacherHomeworkList = () =>
@@ -139,7 +129,7 @@ const teacherNoticeDetail = () =>
     import ('../components/teacher/activity/noticedetail')
 const teacherCoursePlan = () =>
     import ('../components/teacher/source/coursePlan')
-    //1.安装插件
+//1.安装插件
 Vue.use(Router)
 
 
@@ -350,37 +340,15 @@ const routes = [{
                 component: TeacherResult,
                 children: [{
                         path: '',
-                        redirect: '/teacher/result/resultlist'
+                        redirect: 'resultlist'
                     },
                     {
-                        path: '/teacher/result/resultlist',
+                        path: 'resultlist',
                         component: TeacherResultList,
                     },
                     {
-                        path: '/teacher/result/inputmain',
-                        component: TeacherInputMain,
-                        children: [{
-                                path: '',
-                                redirect: '/teacher/result/resultinput'
-                            },
-                            {
-                                path: '/teacher/result/resultinput',
-                                component: TeacherResultInput,
-                            },
-                            {
-                                path: '/teacher/result/dailyscore',
-                                component: TeacherDailyScore,
-                            },
-                            {
-                                path: '/teacher/result/inputsingle',
-                                component: TeacherInputSingle,
-                            },
-                            {
-                                path: '/teacher/result/searchdaily',
-                                component: TeacherSearchDaily,
-                            }
-                        ]
-
+                        path: 'resultinput',
+                        component: TeacherResultInput
                     },
                     {
                         path: 'finalanalysis',
@@ -396,25 +364,25 @@ const routes = [{
                 path: '/teacher/comment',
                 component: TeacherComment,
                 children: [{
-                        path: '',
-                        redirect: '/teacher/comment/commentlist'
-                    },
-                    {
-                        path: '/teacher/comment/commentlist',
-                        component: tchcommentlist
-                    },
-                    {
-                        path: '/teacher/comment/commentdetail',
-                        component: tchcommentdetail
-                    },
-                    {
-                        path: '/teacher/comment/owncommentlist',
-                        component: tchowncommentlist
-                    },
-                    {
-                        path: '/teacher/comment/owncommentdetail',
-                        component: tchowncommentdetail
-                    }
+                    path: '',
+                    redirect: '/teacher/comment/commentlist'
+                  },
+                  {
+                    path: '/teacher/comment/commentlist',
+                    component: tchcommentlist
+                  },
+                  {
+                    path: '/teacher/comment/commentdetail',
+                    component: tchcommentdetail
+                  },
+                  {
+                    path: '/teacher/comment/owncommentlist',
+                    component: tchowncommentlist
+                  },
+                  {
+                    path: '/teacher/comment/owncommentdetail',
+                    component: tchowncommentdetail
+                  }
                 ]
             },
             {

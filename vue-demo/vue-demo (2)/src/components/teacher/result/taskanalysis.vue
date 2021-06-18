@@ -5,30 +5,29 @@
     <router-link to="/teacher/result/finalanalysis" tag="button" id="finalAnalbtn">期末成绩分析</router-link>
   </div>
   <div id="right">
-    <div id="divSelect">
-      <el-form>
-        <el-form-item label="班级" >
-          <el-select placeholder="请选择年份班级" v-model="value" @change="selectChange">
-            <el-option
-              v-for="item in options"
-              :key="item.id"
-              :label="item.clazzName"
-              :value="item.id+''">
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="作业">
-          <el-select placeholder="请选择作业" v-model="value2" @change="titleChange">
-            <el-option
-              v-for="item in options2"
-              :key="item.id"
-              :label="item.title"
-              :value="item.id+''">
-            </el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-    </div>
+    <p class="helpform"></p>
+    <el-form>
+      <el-form-item label="班级" >
+        <el-select placeholder="请选择年份班级" v-model="value" @change="selectChange">
+          <el-option
+            v-for="item in options"
+            :key="item.id"
+            :label="item.clazzName"
+            :value="item.id+''">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="作业">
+        <el-select placeholder="请选择作业" v-model="value2" @change="titleChange">
+          <el-option
+            v-for="item in options2"
+            :key="item.id"
+            :label="item.title"
+            :value="item.id+''">
+          </el-option>
+        </el-select>
+      </el-form-item>
+    </el-form>
     <div id="main"></div>
 <!--    <taskechart></taskechart>-->
   </div>
@@ -142,9 +141,8 @@
 </script>
 
 <style scoped>
-#divSelect {
-  margin-left: 2%;
-  margin-top: 2%
+.helpform{
+  margin-top: 5%;
 }
 .router-link-active{
   color: white;
@@ -173,6 +171,7 @@
   float: left;
   text-align: center;
   margin-left: 0%;
+  margin-top: -3%;
 }
 #right{
   float:right;

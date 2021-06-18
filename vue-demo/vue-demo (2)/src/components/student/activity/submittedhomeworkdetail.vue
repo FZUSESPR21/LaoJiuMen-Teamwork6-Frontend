@@ -7,21 +7,7 @@
     <div id="file">
       <i class="el-icon-folder-opened"></i>
       <span v-model="filename">{{filename}}</span>
-<!--      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>-->
-
-     <el-popover
-        placement="top"
-        width="160"
-        v-model="visible">
-        <p>确定下载该作业文件吗？</p>
-        <div style="text-align: right; margin: 0">
-          <el-button size="mini" type="text" @click="visible = false">取消</el-button>
-          <el-button type="primary" size="mini" @click="downloadClick">确定</el-button>
-        </div>
-        <el-button slot="reference" type="primary" plain size="mini" id="button">下载</el-button>
-      </el-popover>
-
-<!--      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>-->
+      <el-button type="primary" plain size="mini" id="button" @click="downloadClick">下载</el-button>
     </div>
 
     <div id="input1">
@@ -40,8 +26,6 @@ export default {
   name: "submittedhomeworkdetail",
   data() {
     return {
-      visible: false,
-
       input1: this.$route.query.content,
       input2: this.$route.query.remark,
 
@@ -59,33 +43,9 @@ export default {
     },
 
     queryDownload() {
-      fetch('http://1.15.149.222:8080/coursewebsite/homework_result/download?id='+this.id, {
-        method: 'GET',
-        headers: new Headers({
-          //自己加的头信息全都要转成string
-          'Content-type': 'application/json;charset=UTF-8',
-          'Authorization': localStorage.getItem('token')
-
-        }),
-      })
-        .then(res => res.blob())
-        .then(data => {
-          const blobUrl = window.URL.createObjectURL(data);
-          this.download2(blobUrl);
-        });
-    },
-    //模拟a标签实现下载excel文件
-    download2(blobUrl) {
-      const a = document.createElement('a');
-      a.download = this.filename;
-      a.href = blobUrl;
-      a.click();
-    },
-
-    /*queryDownload() {
       window.location.href = 'http://1.15.149.222:8080/coursewebsite/homework_result/download?id='+this.id;
 
-    },*/
+    },
 
   },
 

@@ -17,7 +17,8 @@
               :data="tableData"
               stripe
               style="width: 100%"
-              :header-cell-style="headeRowClass">
+
+             >
       <el-table-column
         v-for="(item,i) in tableCol"
         :key="i"
@@ -76,15 +77,8 @@ export default {
     }
   },
   methods: {
-    headeRowClass({row, column, rowIndex, columnIndex}){
-      //表头的背景颜色
-      if(rowIndex==0){
-        return 'background:#e8e8e8; color: black';
-      }
-    },
-
     toInput(){
-      this.$router.push('/teacher/result/inputmain')
+      this.$router.push('/teacher/result/resultinput')
     },
     toAnalysis(){
       this.$router.push('/teacher/result/taskanalysis')
@@ -121,16 +115,18 @@ export default {
           console.log(error)       //请求失败返回的数据
         })
       },
-    },
+  },
+      created(){
+        this.options = JSON.parse(localStorage.getItem('clazzInfo'))
+        this.clazzvalue = this.options[0].id+''
+        if (!localStorage.getItem('clazzvalue'))
+          localStorage.setItem('clazzvalue', this.clazzvalue)
+        else this.clazzvalue = localStorage.getItem('clazzvalue')
+        this.scorelistSearch(this.currentPage);
+      }
 
-    created(){
-      this.options = JSON.parse(localStorage.getItem('clazzInfo'))
-      this.clazzvalue = this.options[0].id+''
-      if (!localStorage.getItem('clazzvalue'))
-        localStorage.setItem('clazzvalue', this.clazzvalue)
-      else this.clazzvalue = localStorage.getItem('clazzvalue')
-      this.scorelistSearch(this.currentPage);
-    }
+
+
 }
 </script>
 
@@ -138,13 +134,16 @@ export default {
 <style scoped>
 #pagination{
   float: right;
-  margin-top: 2%;
 }
-
+#head{
+  background-color: white;
+  font-size: 20px;
+  height: 100px;
+}
 .score-rule{
   float: right;
-  margin-right: 2%;
-  margin-top: -40px
+  margin-top: -80px;
+  margin-right: 20px;
 }
 
 </style>
