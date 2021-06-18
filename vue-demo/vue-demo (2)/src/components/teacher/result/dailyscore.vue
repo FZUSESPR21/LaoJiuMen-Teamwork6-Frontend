@@ -64,8 +64,8 @@ export default {
       clazzvalue:'',
       tableData: [
 
-
       ],
+
 
       radio: '',
       pagesize: 5,
@@ -115,9 +115,7 @@ export default {
           url: 'http://1.15.149.222:8080/coursewebsite/score/rules/search?cid='+ this.clazzvalue,
         }).then((response) => {          //这里使用了ES6的语法
           console.log(response.data.data)
-          alert('hello')
           this.tableData = response.data.data
-          this.totalCount = response.data.data.total
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })

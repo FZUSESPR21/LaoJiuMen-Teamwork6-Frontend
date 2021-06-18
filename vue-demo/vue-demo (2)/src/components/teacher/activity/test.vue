@@ -66,6 +66,7 @@ export default {
 
     queryAdd() {
       let info = {
+        id: this.value,
         quizLink: this.testLink
       }
 
