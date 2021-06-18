@@ -1,12 +1,15 @@
 <template>
   <div>
     <Studentheader></Studentheader>
-    <cloudimg v-show="state"></cloudimg>
-    <div id="content" v-show="state">
+    <cloudimg v-show="state==='0'"></cloudimg>
+    <div id="content" v-show="state==='0'">
       <router-view></router-view>
     </div>
-    <div id="home" v-show="!state">
+    <div id="home" v-show="state==='1'">
       <home></home>
+    </div>
+    <div id="courseplan" v-show="state==='2'">
+      <course-plan></course-plan>
     </div>
   </div>
 </template>
@@ -20,6 +23,7 @@ import home from "../student/home";
 export default {
   name: "student",
   components: {
+    CoursePlan,
     Studentheader,
     Header,
     Cloudimg,
@@ -27,15 +31,17 @@ export default {
   },
   data(){
     return{
-      state:true,
+      state:'0',
     }
   },
   watch:{
     $route:{
       handler(val,oldval){
         if (this.$route.path==='/student/home')
-          this.state = false
-        else this.state = true
+          this.state = '1'
+        else if (this.$route.path==='/student/source/courseplan')
+          this.state = '2'
+        else this.state = '0'
       },
       immediate:true
     }

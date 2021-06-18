@@ -4,6 +4,17 @@
       <p id="title">福州大学授课计划</p>
       <p>(2020-2021学年02学期)</p>
       <p>课程名称：《软件工程》</p>
+      <div id="clazzname">
+        班级：
+        <el-select v-model="clazzvalue" placeholder="请选择" size="mini" @change="changeClazz">
+          <el-option
+            v-for="item in options"
+            :key="item.id"
+            :label="item.clazzName"
+            :value="item.id+''">
+          </el-option>
+        </el-select>
+      </div>
       <table id="plantable"  border="2" cellspacing="0">
         <tr>
           <td rowspan="2" width="11%" style="font-weight: bold">任课教师</td>
@@ -236,6 +247,9 @@ export default {
   name: "coursePlan",
   data(){
     return{
+      options: [],
+      clazzvalue: '',
+      result:{},
       planMessage:{
         teacher:'',
         credit:'',
@@ -356,18 +370,57 @@ export default {
       }
     }
   },
+  created() {
+    this.options = JSON.parse(localStorage.getItem('clazzInfo'))
+    this.clazzvalue = this.options[0].id+''
+    if (!localStorage.getItem('clazzvalue'))
+      localStorage.setItem('clazzvalue', this.clazzvalue)
+    else this.clazzvalue = localStorage.getItem('clazzvalue')
+    this.getMessage()
+  },
   methods:{
-    submit(){
-      const planMessage = this.planMessage
+    changeClazz() {
+      this.getMessage()
+      localStorage.setItem('clazzvalue', this.clazzvalue)
+    },
+    getMessage(){
+      const plan = {
+        clazzId:this.clazzvalue,
+      }
       this.$axios({
         method: 'post',
         headers: {
-          'Content-type': 'charset=UTF-8'
+          'Content-type': 'application/json;charset=UTF-8'
         },
-        data: planMessage,
-        url: 'http://localhost:8081/coursewebsite_war_exploded/teacher/resource/upload_plan',
+        data: JSON.stringify(plan),
+        url: 'http://1.15.149.222:8080/coursewebsite/resource/get_plan',
       }).then((response) => {          //这里使用了ES6的语法
-        console.log(response.data)
+        console.log(response.data.data)
+        if (response.data.data === null){
+          this.submit()
+        }
+        this.planMessage = JSON.parse(response.data.data)
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+    },
+    submit(){
+      const plan = {
+        clazzId:this.clazzvalue,
+        planMessage: JSON.stringify(this.planMessage)
+      }
+
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(plan),
+        url: 'http://1.15.149.222:8080/coursewebsite/teacher/resource/upload_plan',
+      }).then((response) => {          //这里使用了ES6的语法
+        console.log(response.data.data)
+        this.result = response.data.data
+        console.log(this.result)
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
@@ -404,6 +457,11 @@ export default {
 </script>
 
 <style scoped>
+#clazzname{
+  float: left;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
 #planbox{
   text-align: center;
   margin-left: 10%;
