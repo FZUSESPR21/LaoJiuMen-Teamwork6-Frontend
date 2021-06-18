@@ -15,9 +15,10 @@
       </el-select>
     </div>
 
-    <label class="text">小测链接</label>
     <div id="input">
+      <label class="text">小测链接:</label>
       <el-input v-model="testLink" placeholder="请输入" resize="none"></el-input>
+      <el-button class="button" type="primary" size="mini" @click="queryAdd">发布</el-button>
     </div>
   </div>
 </template>
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       testLink: '',
+      value: '',
     }
   },
 
@@ -38,30 +40,46 @@ export default {
     if (!localStorage.getItem('clazzvalue'))
       localStorage.setItem('clazzvalue', this.value)
     else this.value = localStorage.getItem('clazzvalue')
-    this.querySearch(this.currentPage);
+    this.querySearch();
   },
 
   methods: {
     selectChange() {
-      this.querySearch(this.currentPage);
+      this.querySearch();
       localStorage.setItem('clazzvalue', this.value)
     },
 
     querySearch() {
-      let info = {
-
-      }
-
       this.$axios({
         method: 'get',
         headers: {
           'Content-type': 'application/json;charset=UTF-8'
         },
-        data: JSON.stringify(info),
-        url: 'http://1.15.149.222:8080/coursewebsite/teacher/homework/all?clazzId=' + this.value,
+        url: 'http://1.15.149.222:8080/coursewebsite/quiz/search?id=' + this.value,
       }).then((response) => {          //这里使用了ES6的语法
-        console.log(response.data.data.list)
-        this.tableData = response.data.data.list
+        console.log(response.data.data)
+        this.testLink = response.data.data
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+    },
+
+    queryAdd() {
+      let info = {
+        id: this.value,
+        quizLink: this.testLink
+      }
+
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(info),
+        url: 'http://1.15.149.222:8080/coursewebsite/teacher/quiz/update',
+      }).then((response) => {          //这里使用了ES6的语法
+        console.log(response)
+        alert('发布成功')
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
@@ -77,19 +95,20 @@ export default {
   margin-top: -40px
 }
 
-#table {
+label {
+  float: left;
+  margin-bottom: 2%;
+}
 
-  font-weight: normal;
+
+#input {
+  float: left;
+  margin-left: 2%;
+  margin-right: 5%;
+  width: 80%;
 }
 
 .button {
-  background-color: white;
-  color: #4ab2ee;
-}
-
-#input {
-
-  margin-right: 5%;
-  width: 80%;
+  margin-top: 2%;
 }
 </style>

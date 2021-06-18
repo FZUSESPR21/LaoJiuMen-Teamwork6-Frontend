@@ -139,7 +139,8 @@ const teacherNoticeDetail = () =>
     import ('../components/teacher/activity/noticedetail')
 const teacherCoursePlan = () =>
     import ('../components/teacher/source/coursePlan')
-
+const studentCoursePlan = () =>
+  import ('../components/student/source/coursePlan')
 //小测
 const teacherTest = () =>
   import ('../components/teacher/activity/test')
@@ -189,6 +190,10 @@ const routes = [{
                     {
                         path: '/student/source/other',
                         component: OtherSource
+                    },
+                    {
+                      path: '/student/source/courseplan',
+                      component: studentCoursePlan
                     }
                 ]
             },
