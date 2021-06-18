@@ -15,7 +15,20 @@
 
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
-          <el-button size="mini" type="text" @click="downloadClick(scope.$index,scope.row)" class="button" icon="el-icon-download">下载</el-button>
+          <el-popover
+            placement="top"
+            width="160"
+            v-model="visible"
+            :ref="`popover-${scope.$index}`">
+            <p>确定下载该资源吗？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="cancelBtn(scope)">取消</el-button>
+              <el-button type="primary" size="mini" @click="downloadClick(scope.$index,scope.row),cancelBtn(scope)">确定</el-button>
+            </div>
+            <el-button slot="reference" size="mini" type="text" id="downloadbutton" icon="el-icon-download">下载</el-button>
+          </el-popover>
+
+<!--          <el-button size="mini" type="text" @click="downloadClick(scope.$index,scope.row)" class="button" icon="el-icon-download">下载</el-button>-->
         </template>
       </el-table-column>
     </el-table>
@@ -78,6 +91,10 @@ export default {
       this.id = this.tableData[index].id
       this.name = row.resourceName
       this.queryDownload()
+    },
+
+    cancelBtn (scope) {
+      scope._self.$refs[`popover-${scope.$index}`].doClose()
     },
 
     queryView(pageNum) {

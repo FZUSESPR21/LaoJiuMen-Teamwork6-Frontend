@@ -119,7 +119,7 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-          url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/rules/search?clazzId='+ localStorage.getItem('clazzvalue'),
+          url: 'http://1.15.149.222:8080/coursewebsite/score/rules/search?cid='+ localStorage.getItem('clazzvalue'),
         }).then((response) => {          //这里使用了ES6的语法
           console.log(response.data.data.list)
           this.tableData = response.data.data.list

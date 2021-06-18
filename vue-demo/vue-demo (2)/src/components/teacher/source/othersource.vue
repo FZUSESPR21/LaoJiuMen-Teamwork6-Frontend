@@ -41,7 +41,7 @@
               <p>确定下载该资源吗？</p>
               <div style="text-align: right; margin: 0">
                 <el-button size="mini" type="text" @click="cancelBtn1(scope)">取消</el-button>
-                <el-button type="primary" size="mini" @click="downloadClick(scope.$index,scope.row)">确定</el-button>
+                <el-button type="primary" size="mini" @click="downloadClick(scope.$index,scope.row),cancelBtn1(scope)">确定</el-button>
               </div>
               <el-button slot="reference" v-if="scope.row.type=='2'" type="text" size="mini" @click="editClick" class="button" icon="el-icon-edit">编辑</el-button>
               <el-button slot="reference" v-else type="text" size="mini" class="button" icon="el-icon-download">下载</el-button>
