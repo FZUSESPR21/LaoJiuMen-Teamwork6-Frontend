@@ -8,23 +8,23 @@
       <table id="plantable"  border="2" cellspacing="0">
         <tr>
           <td rowspan="2" width="11%" style="font-weight: bold">任课教师</td>
-          <td rowspan="2" width="11%"><el-input readonly="true" v-model="planMessage.teacher"></el-input></td>
+          <td rowspan="2" width="11%"><el-input readonly=true v-model="planMessage.teacher"></el-input></td>
           <td rowspan="2" width="11%" style="font-weight: bold">课程学分</td>
-          <td rowspan="2" width="11%"><el-input  readonly="true" v-model="planMessage.credit"></el-input></td>
+          <td rowspan="2" width="11%"><el-input  readonly=true v-model="planMessage.credit"></el-input></td>
           <td height="50" width="11%" style="font-weight: bold">总学时</td>
           <td width="11%" style="font-weight: bold">理论</td>
           <td width="11%" style="font-weight: bold">实践</td>
           <td rowspan="2" width="11%" style="font-weight: bold">开课对象</td>
-          <td rowspan="2" width="11%"><el-input  readonly="true" v-model="planMessage.object"></el-input></td>
+          <td rowspan="2" width="11%"><el-input  readonly=true v-model="planMessage.object"></el-input></td>
         </tr>
         <tr>
-          <td><el-input  readonly="true" v-model="planMessage.totalPeriod"></el-input></td>
-          <td><el-input  readonly="true" v-model="planMessage.theory"></el-input></td>
-          <td><el-input  readonly="true" v-model="planMessage.practice"></el-input></td>
+          <td><el-input  readonly=true v-model="planMessage.totalPeriod"></el-input></td>
+          <td><el-input  readonly=true v-model="planMessage.theory"></el-input></td>
+          <td><el-input  readonly=true v-model="planMessage.practice"></el-input></td>
         </tr>
         <tr>
           <td height="50" style="font-weight: bold">起止周数</td>
-          <td colspan="8"><el-input  readonly="true" v-model="planMessage.lastWeeks"></el-input></td>
+          <td colspan="8"><el-input  readonly=true v-model="planMessage.lastWeeks"></el-input></td>
         </tr>
 
 
@@ -33,10 +33,10 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            readonly=true
             v-model="planMessage.goal"
             type="textarea"
-            :rows="4"
-            placeholder="请输入教学目的">
+            :rows="4">
           </el-input>
           </td>
         </tr>
@@ -45,10 +45,10 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            readonly=true
             v-model="planMessage.arrange"
             type="textarea"
-            :rows="4"
-            placeholder="请输入课程教学的总体安排">
+            :rows="4">
           </el-input>
           </td>
         </tr>
@@ -57,10 +57,10 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            readonly=true
             v-model="planMessage.appraisal"
             type="textarea"
-            :rows="4"
-            placeholder="请输入教学方法及考核方案">
+            :rows="4">
           </el-input>
           </td>
         </tr>
@@ -79,12 +79,12 @@
           <td>主讲教师</td>
           <td colspan="4">课程链接（备注）</td>
         </tr>
-        <tr v-for="(item,index) in planMessage.platforms">
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"  @change="select(index)"></input>{{item.platName}}</td>
-          <td><el-input v-model="item.name"></el-input></td>
-          <td><el-input v-model="item.school"></el-input></td>
-          <td><el-input v-model="item.teacher"></el-input></td>
-          <td colspan="4"><el-input v-model="item.link"></el-input></td>
+        <tr v-for="(item,index) in planMessage.selectPlatform">
+          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0">{{item.platName}}</td>
+          <td><el-input readonly=true v-model="item.name"></el-input></td>
+          <td><el-input readonly=true v-model="item.school"></el-input></td>
+          <td><el-input readonly=true v-model="item.teacher"></el-input></td>
+          <td colspan="4"><el-input  readonly=true v-model="item.link"></el-input></td>
         </tr>
 
 
@@ -97,9 +97,9 @@
           <td colspan="5">其他</td>
         </tr>
         <tr>
-          <td colspan="2" height="50"><el-input v-model="planMessage.QQGrouqp"></el-input></td>
-          <td colspan="2" ><el-input v-model="planMessage.WechatGroup"></el-input></td>
-          <td colspan="5"><el-input v-model="planMessage.otherGroup"></el-input></td>
+          <td colspan="2" height="50"><el-input  readonly=true v-model="planMessage.QQGrouqp"></el-input></td>
+          <td colspan="2" ><el-input  readonly=true v-model="planMessage.WechatGroup"></el-input></td>
+          <td colspan="5"><el-input  readonly=true v-model="planMessage.otherGroup"></el-input></td>
         </tr>
         <tr>
           <td colspan="9" height="20" bgcolor="#e0e0e0"></td>
@@ -112,60 +112,55 @@
         <tr>
           <td colspan="9" height="50" align="left">
             教材类型：
-            <el-radio-group v-model="planMessage.bookType">
-              <el-radio :label="1">教育部国家级规划教材</el-radio>
-              <el-radio :label="2">省部级规划教材</el-radio>
-              <el-radio :label="3">教育部国家级精品教材</el-radio>
-              <el-radio :label="4">省部级精品教材</el-radio>
-              <el-radio :label="5">无</el-radio>
-            </el-radio-group>
+            <span v-if="planMessage.bookType===1">教育部国家级规划教材</span>
+            <span v-if="planMessage.bookType===2">省部级规划教材</span>
+            <span v-if="planMessage.bookType===3">教育部国家级精品教材</span>
+            <span v-if="planMessage.bookType===4">省部级精品教材</span>
+            <span v-if="planMessage.bookType===5">无</span>
+
           </td>
         </tr>
         <tr>
           <td colspan="9" height="50" align="left">
             课程教材使用情况：
-            <el-radio-group v-model="planMessage.bookCondition">
-              <el-radio :label="1">选用</el-radio>
-              <el-radio :label="2">自编</el-radio>
-              <el-radio :label="3">无</el-radio>
-            </el-radio-group>
+            <span v-if="planMessage.bookCondition===1">选用</span>
+            <span v-if="planMessage.bookCondition===2">自编</span>
+            <span v-if="planMessage.bookCondition===3">无</span>
+
           </td>
         </tr>
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于马工程教材：
-            <el-radio-group v-model="planMessage.isMagong">
-              <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
-            </el-radio-group>
+            <span v-if="planMessage.isMagong===1">是</span>
+            <span v-if="planMessage.isMagong===2">否</span>
+
           </td>
         </tr>
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于哲学社会科学教材：
-            <el-radio-group v-model="planMessage.isZexue">
-              <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
-            </el-radio-group>
+            <span v-if="planMessage.isZexue===1">是</span>
+            <span v-if="planMessage.isZexue===2">否</span>
+
           </td>
         </tr>
         <tr>
           <td colspan="9" height="50" align="left">
             是否属于境外原本教材：
-            <el-radio-group v-model="planMessage.isForeign">
-              <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
-            </el-radio-group>
+            <span v-if="planMessage.isForeign===1">是</span>
+            <span v-if="planMessage.isForeign===2">否</span>
+
           </td>
         </tr>
         <tr>
           <td colspan="9" height="100">
             <p></p>
-            教材名称：<input id="bookname" v-model="planMessage.bookName"></input><p></p>
-            出版社：<input id="bookpress" v-model="planMessage.bookPress"></input><p></p>
-            教材编者：<input id="bookauthor" v-model="planMessage.bookAuthor"></input><p></p>
-            教材版本：<input id="bookversion" v-model="planMessage.bookVersion"></input><p></p>
-            出版时间：<input id="pulishtime" v-model="planMessage.publishTime"></input><p></p>
+            教材名称：<input id="bookname"  readonly=true v-model="planMessage.bookName"></input><p></p>
+            出版社：<input id="bookpress"  readonly=true v-model="planMessage.bookPress"></input><p></p>
+            教材编者：<input id="bookauthor"  readonly=true v-model="planMessage.bookAuthor"></input><p></p>
+            教材版本：<input id="bookversion" readonly=true  v-model="planMessage.bookVersion"></input><p></p>
+            出版时间：<input id="pulishtime"  readonly=true v-model="planMessage.publishTime"></input><p></p>
           </td>
         </tr>
 
@@ -175,6 +170,8 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.message"
+            readonly=true
             type="textarea"
             :rows="4"
             placeholder="请输入主要教学参考资料">
@@ -186,6 +183,8 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.require"
+            readonly=true
             type="textarea"
             :rows="4"
             placeholder="请输入本课程对学生的要求">
@@ -210,24 +209,19 @@
           <td>辅导教师</td>
         </tr>
         <tr v-for="row in planMessage.tableData">
-          <td height="50"><el-input v-model="row.clazzTime"></el-input></td>
-          <td><el-input v-model="row.weekTime"></el-input></td>
-          <td><el-input v-model="row.date"></el-input></td>
-          <td><el-input v-model="row.contend"></el-input></td>
-          <td><el-input v-model="row.form"></el-input></td>
-          <td><el-input v-model="row.time"></el-input></td>
-          <td><el-input v-model="row.lecture"></el-input></td>
-          <td><el-input v-model="row.tutor"></el-input></td>
-          <td><el-input v-model="row.place"></el-input></td>
+          <td height="50"><el-input readonly=true v-model="row.clazzTime"></el-input></td>
+          <td><el-input  readonly=true v-model="row.weekTime"></el-input></td>
+          <td><el-input  readonly=true v-model="row.date"></el-input></td>
+          <td><el-input  readonly=true v-model="row.contend"></el-input></td>
+          <td><el-input  readonly=true v-model="row.form"></el-input></td>
+          <td><el-input  readonly=true v-model="row.time"></el-input></td>
+          <td><el-input readonly=true v-model="row.lecture"></el-input></td>
+          <td><el-input  readonly=true v-model="row.tutor"></el-input></td>
+          <td><el-input  readonly=true v-model="row.place"></el-input></td>
         </tr>
 
       </table>
-      <div id="addbtnbox">
-        <el-button id="addbtn" type="text" @click="addData">添加数据</el-button>
-      </div>
-      <el-divider></el-divider>
-      <el-button type="primary" @click="submit">确定</el-button>
-      <div id="aa"></div>
+
     </div>
   </div>
 </template>
@@ -344,6 +338,8 @@ export default {
         bookAuthor:'',
         bookVersion:'',
         publishTime:'',
+        message:'',
+        require:'',
         tableData:[
           {
             clazzTime:'',

@@ -90,7 +90,8 @@
           <td colspan="4">课程链接（备注）</td>
         </tr>
         <tr v-for="(item,index) in planMessage.platforms">
-          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox"  @change="select(index)"></input>{{item.platName}}</td>
+          <td colspan="2" height="50" align="left" bgcolor="#e0e0e0"><input type="checkbox" :checked=planMessage.platforms[index].checked
+                                                                            @change="select(index)"></input>{{item.platName}}</td>
           <td><el-input v-model="item.name"></el-input></td>
           <td><el-input v-model="item.school"></el-input></td>
           <td><el-input v-model="item.teacher"></el-input></td>
@@ -146,7 +147,7 @@
             是否属于马工程教材：
             <el-radio-group v-model="planMessage.isMagong">
               <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
+              <el-radio :label="2">否</el-radio>
             </el-radio-group>
           </td>
         </tr>
@@ -155,7 +156,7 @@
             是否属于哲学社会科学教材：
             <el-radio-group v-model="planMessage.isZexue">
               <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
+              <el-radio :label="2">否</el-radio>
             </el-radio-group>
           </td>
         </tr>
@@ -164,7 +165,7 @@
             是否属于境外原本教材：
             <el-radio-group v-model="planMessage.isForeign">
               <el-radio :label="1">是</el-radio>
-              <el-radio :label="2">无</el-radio>
+              <el-radio :label="2">否</el-radio>
             </el-radio-group>
           </td>
         </tr>
@@ -185,6 +186,7 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.message"
             type="textarea"
             :rows="4"
             placeholder="请输入主要教学参考资料">
@@ -196,6 +198,7 @@
         </tr>
         <tr>
           <td colspan="9" height="50"><el-input
+            v-model="planMessage.require"
             type="textarea"
             :rows="4"
             placeholder="请输入本课程对学生的要求">
@@ -263,6 +266,7 @@ export default {
         appraisal:'',
         platforms:[
           {
+            checked:false,
             platName:'福州大学课程平台',
             name:'',
             school:'',
@@ -270,6 +274,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'中国大学MOOC平台（爱课程）',
             name:'',
             school:'',
@@ -277,6 +282,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'福州大学雨课堂',
             name:'',
             school:'',
@@ -284,6 +290,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'福州大学学堂云',
             name:'',
             school:'',
@@ -291,6 +298,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'超星“一平三端“智慧教学平台',
             name:'',
             school:'',
@@ -298,6 +306,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'超星尔雅',
             name:'',
             school:'',
@@ -305,6 +314,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'学银在线',
             name:'',
             school:'',
@@ -312,6 +322,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'智慧树在线教育平台',
             name:'',
             school:'',
@@ -319,6 +330,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'国家虚拟仿真实验教学项目工作网',
             name:'',
             school:'',
@@ -326,6 +338,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'Moodle',
             name:'',
             school:'',
@@ -333,6 +346,7 @@ export default {
             link:''
           },
           {
+            checked:false,
             platName:'腾讯课堂',
             name:'',
             school:'',
@@ -354,6 +368,8 @@ export default {
         bookAuthor:'',
         bookVersion:'',
         publishTime:'',
+        message:'',
+        require:'',
         tableData:[
           {
             clazzTime:'',
@@ -371,6 +387,8 @@ export default {
     }
   },
   created() {
+    console.log(JSON.stringify(this.planMessage.platforms[0]))
+    console.log(JSON.stringify(this.planMessage.selectPlatform).indexOf(JSON.stringify(this.planMessage.platforms[0])))
     this.options = JSON.parse(localStorage.getItem('clazzInfo'))
     this.clazzvalue = this.options[0].id+''
     if (!localStorage.getItem('clazzvalue'))
@@ -409,7 +427,7 @@ export default {
         clazzId:this.clazzvalue,
         planMessage: JSON.stringify(this.planMessage)
       }
-
+alert(JSON.stringify(this.planMessage))
       this.$axios({
         method: 'post',
         headers: {
@@ -437,7 +455,7 @@ export default {
         tutor:'',
         place:''
       }
-      this.tableData.push(row)
+      this.planMessage.tableData.push(row)
     },
     select(index){
       let cnt = 0;
