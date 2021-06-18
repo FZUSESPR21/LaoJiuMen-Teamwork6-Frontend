@@ -48,24 +48,24 @@ export default {
       },
       options:[],
       tableCol: [
-        {label: "课堂表现得分规则/次"},
+        //{label: "课堂表现得分规则/次"},
         //{prop: "id", label: "id"},
         {prop: "abs", label: "缺勤"},
         {prop: "leave", label: "请假"},
         {prop: "positivescore", label: "表现积极"},
 
-        {label: "小测得分规则/次"},
+        //{label: "小测得分规则/次"},
         //{prop: "id", label: "id"},
-        {prop: "scoreA", label: "A100"},
-        {prop: "scoreB", label: "B90-80"},
-        {prop: "scoreC", label: "C70-30"},
-        {prop: "scoreD", label: "D20-0"},
-        {prop: "scoreF", label: "F缺交"},
-        {prop: "scoreD", label: "D20-0"},
+        {prop: "scoreA", label: "小测A100"},
+        {prop: "scoreB", label: "小测B90-80"},
+        {prop: "scoreC", label: "小测C70-30"},
+        {prop: "scoreD", label: "小测D20-0"},
+        {prop: "scoreF", label: "小测F缺交"},
+        {prop: "scoreD", label: "小测D20-0"},
 
-        {label: "作业得分规则/次"},
+        //{label: "作业得分规则/次"},
         //{prop: "id", label: "id"},
-        {prop: "homescore", label: "缺交"},
+        {prop: "homescore", label: "作业缺交"},
 
       ],
 
@@ -119,7 +119,7 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-          url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/down?clazzId='+ localStorage.getItem('clazzvalue') +'&pn='+pageNum,
+          url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/rules/search?clazzId='+ localStorage.getItem('clazzvalue'),
         }).then((response) => {          //这里使用了ES6的语法
           console.log(response.data.data.list)
           this.tableData = response.data.data.list

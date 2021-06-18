@@ -4,15 +4,14 @@
     <div class="part">
 <!--      search部分-->
       <div class="searchPart">
-        <form>
           <select id="selectPart">
             <option value="文章标题">文章标题</option>
             <option value="作者">作者</option>
           </select>
           <input type="text" placeholder="搜索" id="search"></input>
+          <button id="searchBtn" @click="goToSearch">搜索</button>
           <el-button class="searchBtn" @click="ToOwnlist">仅看自己</el-button>
           <el-button class="searchBtn" @click="insertTopic">发表新话题</el-button>
-        </form>
 
       </div>
 <!--      title&contain-->
@@ -41,7 +40,7 @@
               {{item.content}}
             </div>
             <div class="comment-info">
-              <span class="comment-name">{{item.account}}</span>
+              <span class="comment-name">{{item.name}}</span>
               <span>发布于</span>
               <span class="comment-time">{{item.releasedAt}}</span>
             </div>
@@ -79,7 +78,7 @@ export default {
           detailID:e.id,
           topic:{
             title:e.title,
-            account:e.account,
+            name:e.name,
             content:e.content,
             released_at:e.released_at
           }
@@ -96,6 +95,45 @@ export default {
       }).then((response) => {          //这里使用了ES6的语法
         console.log(JSON.stringify(response))       //请求成功返回的数据
         // console.log(response.data.data.list)
+        this.commentList = response.data.data.list
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+    },
+    goToSearch:function (){
+      let type,search
+      type = this.type
+      search = this.search
+      let searchList = {}
+      let url
+      if(type==="文章标题")
+      {
+        searchList = {
+          "title" : search,
+          "pn" : 1
+        }
+        url = 'http://1.15.149.222:8080/coursewebsite/topic/srh_t?title='+search
+      }
+      else{
+        searchList = {
+          "name" : search,
+          "pn" : 1
+        }
+        url = 'http://1.15.149.222:8080/coursewebsite/topic/srh_n?name='+search
+      }
+      this.$axios({
+        method: 'get',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        url: url,
+        // data: searchList
+      }).then((response) =>{
+        console.log(response.data)
+        // this.$refs.containValue.value=''
+        // this.$refs.titleValue.value=''
+        // this.getCommentInfo()
+        // this.$router.go(0)
         this.commentList = response.data.data.list
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
@@ -151,9 +189,18 @@ export default {
   margin-top: 0;
   font-size: 15px;
 }
-
+#searchBtn{
+  width: 60px;
+  height: 25px;
+  font-size: 10px;
+  margin-left: 30px;
+  margin-top: auto;
+  background: rgb(253, 253, 253);
+  border: 1px solid;
+  border-radius: 3px;
+}
 .part{
-  margin-top: -15px;
+  margin-top: 7px;
   background: rgb(255,255,255);
   border: rgb(186,186,186) solid 1px;
   box-shadow: 5px 5px 10px #b6b4b4 ;

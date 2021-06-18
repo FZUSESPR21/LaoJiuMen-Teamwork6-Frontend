@@ -6,15 +6,15 @@
         <li>
           <div class="comment-item">
             <div class="comment-title">
-              {{item.title}}
+              {{title}}
             </div>
             <div class="comment-contains">
-              {{item.content}}
+              {{content}}
             </div>
             <div class="comment-info">
-              <span class="comment-name">{{item.account}}</span>
+              <span class="comment-name">{{name}}</span>
               <span>发布于</span>
-              <span class="comment-time">{{item.releasedAt}}</span>
+              <span class="comment-time">{{released_at}}</span>
             </div>
           </div>
         </li>
@@ -27,7 +27,7 @@
               {{item.content}}
             </div>
             <div class="comment-info">
-              <span class="comment-name">{{item.account}}</span>
+              <span class="comment-name">{{item.name}}</span>
               <span>发布于</span>
               <span class="comment-time">{{item.releasedAt}}</span>
               <el-button class="deleteBtn" @click="deleteComment(item.id)">删除</el-button>
@@ -62,12 +62,20 @@ export default {
       commentList:[],
       topicID:'',
       comment:'',
-      item:{}
+      item:{},
+      title:'',
+      name:'',
+      content:'',
+      released_at:''
     }
   },
   created() {
     this.topicID=this.$route.query.detailID
-    this.item=this.$route.query.topic
+    // this.item=this.$route.query.topic
+    this.title=this.$route.query.title
+    this.name=this.$route.query.name
+    this.content=this.$route.query.content
+    this.released_at=this.$route.query.released_at
     this.getCommentInfo();
   },
   methods:{
@@ -152,7 +160,7 @@ export default {
 }
 
 .part{
-  margin-top: -15px;
+  margin-top: 7px;
   background: rgb(255,255,255);
   border: rgb(186,186,186) solid 1px;
   box-shadow: 5px 5px 10px #b6b4b4 ;
