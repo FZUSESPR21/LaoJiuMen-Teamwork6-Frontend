@@ -79,7 +79,7 @@ export default {
         }
       },
 
-      querySearch(pageNum) {
+      querySearch() {
         let info = {
 
         }
@@ -90,11 +90,11 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-       //   url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/homework?numId='+ localStorage.getItem('numvalue') ,
+          url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/homework?numId='+ localStorage.getItem('numvalue') ,
         }).then((response) => {          //这里使用了ES6的语法
-          console.log(response.data.data.list)
-          this.tableData = response.data.data.list
-          this.totalCount = response.data.data.total
+          console.log(response.data.data)
+          this.tableData = response.data.data
+       //   this.totalCount = response.data.data.total
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
         })

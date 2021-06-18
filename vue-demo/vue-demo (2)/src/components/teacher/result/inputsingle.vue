@@ -9,7 +9,7 @@
 
           <el-form ref="form" :model="form" :rules="rules" label-width="80px" id="inputform">
 
-            <el-form-item label="学号" prop="number">
+            <el-form-item label="学号" prop="account">
               <el-input v-model="form.number" placeholder="请输入学号"></el-input>
             </el-form-item>
 
@@ -49,7 +49,7 @@
               <el-input v-model="form.homeworkMiss" placeholder="请输入作业缺交次数"></el-input>
             </el-form-item>
 
-            <el-form-item label="卷面成绩" prop="results">
+            <el-form-item label="卷面成绩" prop="writtenScore">
               <el-input v-model="form.results" placeholder="请输入卷面成绩"></el-input>
             </el-form-item>
 <!--
@@ -105,7 +105,7 @@
 
 
         form: {
-          number: '',
+          account: '',
           absence: '',
           positive: '',
           absence: '',
@@ -117,7 +117,7 @@
           getF: '',
           homeworkScore: '',
           homeworkMiss: '',
-          results: ''
+          writtenScore: ''
         },
 
         rules: {
@@ -152,7 +152,7 @@
       onSubmit(formName) {
         console.log('submit!');
         let info = {
-          sid: this.form.number,
+          account: this.form.account,
           absence: this.form.absence,
           getA: this.form.getA,
           getB: this.form.getB,
@@ -161,7 +161,7 @@
           getF: this.form.getF,
           homeworkScore: this.form.homeworkScore,
           homeworkMiss: this.form.homeworkMiss,
-          results: this.form.results,
+          writtenScore: this.form.writtenScore,
           clazzId:this.form.clazzId,
           issuer: localStorage.getItem('teacherName'),
         }
@@ -174,7 +174,7 @@
                 'Content-type': 'application/json;charset=UTF-8'
               },
               data: JSON.stringify(info),
-              url: 'http://1.15.149.222:8080/coursewebsite/teacher/result/score/update',
+              url: 'http://1.15.149.222:8080/coursewebsite/teacher/score/update',
             }).then((response) => {          //这里使用了ES6的语法
               console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
               if (response.data.code==='200') {
