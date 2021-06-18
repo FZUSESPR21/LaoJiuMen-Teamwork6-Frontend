@@ -24,15 +24,7 @@
       </el-table>
     </div>
 
-    <el-pagination
-      id="pagination"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-size="pagesize"
-      layout="prev, pager, next"
-      :total="totalCount">
-    </el-pagination>
-    <el-button type="primary" plain size="mini" id="changebutton" @click="changeClick()">修改平时成绩占比</el-button>
+<!--    <el-button type="primary" plain size="mini" id="changebutton" @click="changeClick()">修改平时成绩占比</el-button>-->
   </div>
 </template>
 
@@ -46,7 +38,7 @@ export default {
         user: '',
         region: ''
       },
-      options:[],
+      //options:[],
       tableCol: [
         //{label: "课堂表现得分规则/次"},
         //{prop: "id", label: "id"},
@@ -74,6 +66,8 @@ export default {
 
 
       ],
+
+      radio: '',
       pagesize: 5,
       //当前页码
       currentPage: 1,
@@ -107,7 +101,7 @@ export default {
         }
       },
 
-      querySearch(pageNum) {
+      querySearch() {
         let info = {
 
         }
@@ -118,10 +112,11 @@ export default {
             'Content-type': 'application/json;charset=UTF-8'
           },
           data: JSON.stringify(info),
-          url: 'http://1.15.149.222:8080/coursewebsite/score/rules/search?cid='+ localStorage.getItem('clazzvalue'),
+          url: 'http://1.15.149.222:8080/coursewebsite/score/rules/search?cid='+ this.clazzvalue,
         }).then((response) => {          //这里使用了ES6的语法
-          console.log(response.data.data.list)
-          this.tableData = response.data.data.list
+          console.log(response.data.data)
+          alert('hello')
+          this.tableData = response.data.data
           this.totalCount = response.data.data.total
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
@@ -136,8 +131,8 @@ export default {
       this.value = this.options[0].id+''
       if (!localStorage.getItem('clazzvalue'))
         localStorage.setItem('clazzvalue', this.value)
-      else this.value = localStorage.getItem('clazzvalue')
-      this.querySearch(this.currentPage);
+      else this.clazzvalue = localStorage.getItem('clazzvalue')
+      this.querySearch();
     }
   };
 </script>
@@ -152,7 +147,7 @@ export default {
 
 #dailytable {
 
-  font-weight: normal;
+
   margin-top: 3%;
   width:95%;
 }
