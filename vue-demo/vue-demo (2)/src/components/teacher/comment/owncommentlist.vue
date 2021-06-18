@@ -4,7 +4,6 @@
       <!--      search部分-->
       <div class="searchPart">
         <form>
-          <input type="text" placeholder="搜索" id="search"></input>
           <el-button class="searchBtn" @click="insertTopic()">发表新话题</el-button>
         </form>
 
@@ -35,7 +34,7 @@
               {{item.content}}
             </div>
             <div class="comment-info">
-              <span class="comment-name">{{item.account}}</span>
+              <span class="comment-name">{{item.name}}</span>
               <span>发布于</span>
               <span class="comment-time">{{item.releasedAt}}</span>
               <el-button class="deleteBtn" @click="deleteComment(item.id)">删除</el-button>
@@ -67,12 +66,12 @@ export default {
         path: '/teacher/comment/owncommentdetail',
         query: {
           detailId: e.id,
-          topic:{
+
             title:e.title,
-            account:e.account,
+            name:e.name,
             content:e.content,
             released_at:e.released_at
-          }
+
         }
       })
     },
@@ -154,7 +153,7 @@ export default {
 }
 
 .part{
-  margin-top: -15px;
+  margin-top: 7px;
   background: rgb(255,255,255);
   border: rgb(186,186,186) solid 1px;
   box-shadow: 5px 5px 10px #b6b4b4 ;
