@@ -5,7 +5,7 @@
       <router-link  to="/teacher/home" tag="button" >首页</router-link>
       <router-link to="/teacher/source" tag="button">课程资源</router-link>
       <router-link to="/teacher/activity" tag="button">课程活动</router-link>
-<!--      <router-link to="/teacher/signin" tag="button">课程签到</router-link>-->
+      <router-link to="/teacher/signin" tag="button">课程签到</router-link>
       <router-link to="/teacher/comment" tag="button">答疑讨论</router-link>
       <router-link to="/teacher/result" tag="button">学科成绩</router-link>
       <router-link to="/teacher/manage" tag="button">学生管理</router-link>

@@ -35,7 +35,7 @@ const TeacherSource = () =>
 const TeacherActivity = () =>
     import ('../components/teacher/activity/activitymain')
 const TeacherSignin = () =>
-    import ('../components/teacher/signin/signinlist')
+    import ('../components/teacher/signin/signinmain')
 const TeacherResult = () =>
     import ('../components/teacher/result/resultmain')
 const TeacherComment = () =>
@@ -144,6 +144,15 @@ const studentCoursePlan = () =>
 //小测
 const teacherTest = () =>
   import ('../components/teacher/activity/test')
+//签到
+const signindetail = () =>
+  import('../components/teacher/signin/signindetail')
+const signinchange = () =>
+  import('../components/teacher/signin/signinchange')
+const signinlist = () =>
+  import('../components/teacher/signin/signinlist')
+
+
     //1.安装插件
 Vue.use(Router)
 
@@ -356,7 +365,24 @@ const routes = [{
             },
             {
                 path: '/teacher/signin',
-                component: TeacherSignin
+                component: TeacherSignin,
+              children: [
+                {
+                  path: '',
+                  redirect: '/teacher/signin/signinlist'
+                },
+                {
+                  path: '/teacher/signin/signinlist',
+                  component:signinlist
+                },
+                {
+                  path: '/teacher/signin/signinchange',
+                  component:signinchange
+                },{
+                  path: '/teacher/signin/signindetail',
+                  component:signindetail
+                }
+              ]
             },
             {
                 path: '/teacher/result',
