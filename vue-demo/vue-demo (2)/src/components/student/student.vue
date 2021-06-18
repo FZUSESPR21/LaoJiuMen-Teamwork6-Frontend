@@ -16,16 +16,15 @@
 
 <script>
 import Cloudimg from '../Layout/cloudimg.vue';
-import Header from "../Layout/StudentHeader";
-import Studentheader from "../Layout/StudentHeader";
 import home from "../student/home";
+import Studentheader from "../Layout/StudentHeader";
+import CoursePlan from "./source/coursePlan";
 
 export default {
   name: "student",
   components: {
     CoursePlan,
     Studentheader,
-    Header,
     Cloudimg,
     home
   },
