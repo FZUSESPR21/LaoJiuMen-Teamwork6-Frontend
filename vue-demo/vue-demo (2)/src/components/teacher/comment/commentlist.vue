@@ -51,6 +51,14 @@
         </li>
 
       </ul>
+      <el-pagination
+        id="pagination"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-size="pagesize"
+        layout="prev, pager, next"
+        :total="totalCount">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -64,13 +72,27 @@ export default {
       newTitle:'',
       newContain:'',
       type:'文章标题',
-      search:''
+      search:'',
+      pagesize: 5,
+      //当前页码
+      currentPage: 1,
+      //查询的页码
+      start: 1,
+      //默认数据总数
+      totalCount: 1,
+      //搜索条件
+      criteria: '',
     }
   },
   created() {
-    this.getCommentInfo();
+    this.getCommentInfo(this.currentPage);
   },
   methods:{
+    //页码变更
+    handleCurrentChange: function(val) {
+      this.currentPage = val;
+      this.getCommentInfo(this.currentPage);
+    },
     ToOwnlist:function (){
       this.$router.push({
         path: '/teacher/comment/owncommentlist',
@@ -88,17 +110,18 @@ export default {
         }
       })
     },
-    getCommentInfo:function (){
+    getCommentInfo (pageNum){
       this.$axios({
         method: 'get',
         headers: {
           'Content-type': 'application/json;charset=UTF-8'
         },
-        url: 'http://1.15.149.222:8080/coursewebsite/topic/all',
+        url: 'http://1.15.149.222:8080/coursewebsite/topic/all?pn='+pageNum,
       }).then((response) => {          //这里使用了ES6的语法
         console.log(JSON.stringify(response))       //请求成功返回的数据
         // console.log(response.data.data.list)
         this.commentList = response.data.data.list
+        this.totalCount = response.data.data.total
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
@@ -146,7 +169,7 @@ export default {
       this.newContain=this.$refs.containValue.value
       this.newTitle=this.$refs.titleValue.value
       console.log(this.newTitle)
-      if(this.newContain==''||this.newTitle=='')
+      if(this.newContain===''||this.newTitle==='')
         alert("请输入话题！")
       else {
         this.$axios({
@@ -164,7 +187,7 @@ export default {
           console.log(response.data)
           this.$refs.containValue.value=''
           this.$refs.titleValue.value=''
-          this.getCommentInfo()
+          this.getCommentInfo(this.currentPage)
           this.$router.go(0)
         }).catch((error) => {
           console.log(error)       //请求失败返回的数据
@@ -183,7 +206,7 @@ export default {
         data: JSON.stringify(info),
         url: 'http://1.15.149.222:8080/coursewebsite/topic/delete',
       }).then((response) =>{
-        this.getCommentInfo();
+        this.getCommentInfo(this.currentPage);
         this.$router.go(0)
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
