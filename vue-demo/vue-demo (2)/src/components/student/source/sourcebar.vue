@@ -15,6 +15,10 @@
 <!--          <router-link to="/student/source/other" tag="button" class="button">其他资源</router-link>-->
           <span>其他资源</span>
         </el-menu-item>
+        <el-menu-item class="item" index="/student/source/courseplan">
+          <!--          <router-link to="/student/source/other" tag="button" class="button">其他资源</router-link>-->
+          <span>授课计划</span>
+        </el-menu-item>
       </el-menu>
     </el-col>
 
