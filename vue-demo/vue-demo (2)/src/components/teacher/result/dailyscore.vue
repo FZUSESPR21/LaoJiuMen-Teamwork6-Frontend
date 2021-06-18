@@ -50,32 +50,30 @@ export default {
       tableCol: [
         //{label: "课堂表现得分规则/次"},
         //{prop: "id", label: "id"},
-        {prop: "abs", label: "缺勤"},
-        {prop: "leave", label: "请假"},
-        {prop: "positivescore", label: "表现积极"},
+        {prop: "absentScore", label: "缺勤"},
+       // {prop: "leave", label: "请假"},
+        {prop: "performanceScore", label: "表现积极"},
 
         //{label: "小测得分规则/次"},
         //{prop: "id", label: "id"},
-        {prop: "scoreA", label: "小测A100"},
-        {prop: "scoreB", label: "小测B90-80"},
-        {prop: "scoreC", label: "小测C70-30"},
-        {prop: "scoreD", label: "小测D20-0"},
-        {prop: "scoreF", label: "小测F缺交"},
-        {prop: "scoreD", label: "小测D20-0"},
+        {prop: "quizAScore", label: "小测A100"},
+        {prop: "quizBScore", label: "小测B90-80"},
+        {prop: "quizCScore", label: "小测C70-30"},
+        {prop: "quizDScore", label: "小测D20-0"},
+        {prop: "quizEScore", label: "小测F缺交"},
 
         //{label: "作业得分规则/次"},
         //{prop: "id", label: "id"},
-        {prop: "homescore", label: "作业缺交"},
+        {prop: "notSubmittedScore", label: "作业缺交"},
 
       ],
 
+      options:[],
+      clazzvalue:'',
       tableData: [
 
-      ],
 
-      nId: '1',
-      nname: '',
-      content: '',
+      ],
       pagesize: 5,
       //当前页码
       currentPage: 1,
@@ -85,6 +83,7 @@ export default {
       totalCount: 1,
       //搜索条件
       criteria: '',
+      itemKey:''
     };
   },
     methods: {

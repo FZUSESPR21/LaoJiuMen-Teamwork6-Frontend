@@ -97,11 +97,17 @@ export default {
             // console.log(JSON.stringify(response))       //请求成功返回的数据
             // console.log(response.data.data)
             if (response.data.data === 1){
-              alert('新增学生成功!');
+              this.$message({
+                type: 'success',
+                message: '新增学生成功!'
+              });
               this.$router.push('/teacher/manage/studentlist')
             }
             else {
-              alert('新增学生失败!');
+              this.$message({
+                type: 'error',
+                message: '新增学生失败!'
+              });
             }
           }).catch((error) => {
             console.log(error)       //请求失败返回的数据
@@ -133,11 +139,17 @@ export default {
             // console.log(JSON.stringify(response))       //请求成功返回的数据
             // console.log(response.data.data)
             if (response.data.data === 1){
-              alert('编辑学生成功!');
+              this.$message({
+                type: 'success',
+                message: '编辑学生成功!'
+              });
               this.$router.push('/teacher/manage/studentlist')
             }
             else {
-              alert('编辑学生失败!');
+              this.$message({
+                type: 'warning',
+                message: '无修改内容'
+              });
             }
           }).catch((error) => {
             console.log(error)       //请求失败返回的数据

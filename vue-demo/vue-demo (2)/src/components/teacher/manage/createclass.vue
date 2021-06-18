@@ -58,13 +58,19 @@ export default {
             // console.log(JSON.stringify(response))       //请求成功返回的数据
             // console.log(response.data.data)
             if (response.data.code === '200') {
-              alert('新增班级成功!');
+              this.$message({
+                type: 'success',
+                message: '新增班级成功!'
+              });
               localStorage.setItem('clazzInfo',JSON.stringify(response.data.data))
               this.$router.push('/teacher/manage/studentlist')
               this.$router.go(0)
             }
             else {
-              alert('新增班级失败!');
+              this.$message({
+                type: 'error',
+                message: '新增班级失败!'
+              });
             }
           }).catch((error) => {
             console.log(error)       //请求失败返回的数据

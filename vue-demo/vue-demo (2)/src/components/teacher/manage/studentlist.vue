@@ -29,12 +29,12 @@
               <span id="studentname">{{ item.studentName }}</span>
               <span id="email">{{ item.email }}</span>
               <el-button type="text" id="itemeditbtn" @click="editstudent(item.id,item.account,item.studentName,item.email)">编辑</el-button>
-              <el-button type="text" id="itemdelbtn" @click="deleteOne(item.id)">删除</el-button>
+              <el-button type="text" id="itemdelbtn" @click="deleteOneConfirm(item.id)">删除</el-button>
             </div>
           </div>
         </div>
         <div id="listfoot">
-          <el-button size="mini" id="deleteSelbtn" @click="deleteSel">删除</el-button>
+          <el-button size="mini" id="deleteSelbtn" @click="deleteSelConfirm">删除</el-button>
           <input class="file" name="file_excel" type="file"  @change="select"/>
           <el-button size="mini" id="uploadbtn" icon="el-icon-upload2">上传Excel生成学生列表</el-button>
           <el-button size="mini" id="downloadbtn" icon="el-icon-download" @click="handleDownLoad">下载上传须知</el-button>
@@ -182,13 +182,40 @@ export default {
       // url为后台接口
       instance.post('http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/excel', param)
         .then((response) => {
-          console.log(response.data)
-          // this.$router.push('/teacher/manage/studentlist')
-          // this.$router.go(0)
+          if (response.data.code === '200'){
+            this.$router.push('/teacher/manage/studentlist')
+            this.$router.go(0)
+            this.$message({
+              type: 'success',
+              message: '上传成功!'
+            });
+          }else {
+            this.$message({
+              type: 'error',
+              message: '上传失败!'
+            });
+          }
         }) // 成功返回信息 调用函数  函数需自己定义，此处后面省略
         .catch((error) => {
           console.log(error)       //请求失败返回的数据
         })
+    },
+    deleteOneConfirm(stuId){
+
+        this.$confirm('确认删除此学生?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then((action) => {
+          this.deleteOne(stuId)
+
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+
     },
     deleteOne(stuId) {
       let index
@@ -208,15 +235,50 @@ export default {
         if (response.data.code === '200' && response.data.data === 1) {
           this.$router.push('/teacher/manage/studentlist')
           this.$router.go(0)
-          alert('删除学生成功!');
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
         } else {
-          alert('删除学生失败!');
+          this.$message({
+            type: 'error',
+            message: '删除失败!'
+          });
         }
       }).catch((error) => {
         console.log(error)       //请求失败返回的数据
       })
     },
+    deleteSelConfirm(){
+      let message = []
+      for (let i = 0; i < this.selectArr.length; i++) {
+        let _t = {
+          id: this.selectArr[i]
+        }
+        message.push(_t)
+      }
+      if (this.selectArr.length === 0){
+        this.$message({
+          type: 'warning',
+          message: '没有要删除的选项'
+        });
+      }
+      else {
+        this.$confirm('确认删除选中学生?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then((action) => {
+          this.deleteSel()
 
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      }
+    },
     deleteSel() {
       let message = []
       for (let i = 0; i < this.selectArr.length; i++) {
@@ -225,27 +287,30 @@ export default {
         }
         message.push(_t)
       }
-      if (this.selectArr.length == 0)
-        alert("没有要删除的选项")
-      else {
-        let index
-        this.$axios({
-          method: 'post',
-          headers: {
-            'Content-type': 'application/json;charset=UTF-8'
-          },
-          data: JSON.stringify(message),
-          url: 'http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/dlt_li',
-        }).then((response) => {          //这里使用了ES6的语法
-          if (response.data.code === '200') {
-            alert(response.data.data)
-            this.$router.push('/teacher/manage/studentlist')
-            this.$router.go(0)
-          }
-        }).catch((error) => {
-          console.log(error)       //请求失败返回的数据
-        })
-      }
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(message),
+        url: 'http://1.15.149.222:8080/coursewebsite/teacher/stu_mgt/dlt_li',
+      }).then((response) => {          //这里使用了ES6的语法
+        if (response.data.code === '200') {
+          this.$router.push('/teacher/manage/studentlist')
+          this.$router.go(0)
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        } else {
+          this.$message({
+            type: 'error',
+            message: '删除失败!'
+          });
+        }
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
     },
     selectOne(studentId) {
       let idIndex = this.selectArr.indexOf(studentId)
