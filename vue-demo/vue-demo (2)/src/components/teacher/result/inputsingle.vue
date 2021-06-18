@@ -38,7 +38,7 @@
             </el-form-item>
 
             <el-form-item label="小测获得F" prop="getF">
-              <el-input v-model="form.getF" placeholder="请输入小测获得D次数"></el-input>
+              <el-input v-model="form.getF" placeholder="请输入小测缺交次数"></el-input>
             </el-form-item>
 
             <el-form-item label="作业最终分数" prop="homeworkScore">
@@ -149,23 +149,43 @@
         localStorage.setItem('clazzvalue', this.form.clazzId)
       },
 
+      
+
       onSubmit(formName) {
         console.log('submit!');
         let info = {
           account: this.form.account,
-          absence: this.form.absence,
+          totalScore:(parseInt(this.form.absence)*(-3)+
+            parseInt(this.form.positive)+
+            parseInt(this.form.getA)*2+
+            parseInt(this.form.getB)*1+
+            parseInt(this.form.getD)*(-1)+
+            parseInt(this.form.getE)*(-2)+
+            parseInt(this.form.homeworkMiss)*(-3)+
+            parseInt(this.form.homeworkScore))*0.3+
+            parseInt(this.form.writtenScore)*0.7,
+          writtenScore: this.form.writtenScore,  
+          usualScore:parseInt(this.form.absence)*(-3)+
+            parseInt(this.form.positive)+
+            parseInt(this.form.getA)*2+
+            parseInt(this.form.getB)*1+
+            parseInt(this.form.getD)*(-1)+
+            parseInt(this.form.getE)*(-2)+
+            parseInt(this.form.homeworkMiss)*(-3),
+            
+            /* absence: this.form.absence,
           getA: this.form.getA,
           getB: this.form.getB,
           getC: this.form.getC,
           getD: this.form.getD,
           getF: this.form.getF,
           homeworkScore: this.form.homeworkScore,
-          homeworkMiss: this.form.homeworkMiss,
-          writtenScore: this.form.writtenScore,
+          homeworkMiss: this.form.homeworkMiss, */
+          
           clazzId:this.form.clazzId,
           issuer: localStorage.getItem('teacherName'),
         }
-
+        
         this.$refs[formName].validate((valid) => {
           if (valid) {
             this.$axios({
@@ -179,8 +199,8 @@
               console.log(JSON.stringify(response.data.data))       //请求成功返回的数据
               if (response.data.code==='200') {
                 alert('上传成功')
-                this.$router.push('/teacher/result/resultlist')
-                this.$router.go(0)
+/*                 this.$router.push('/teacher/result/resultlist')
+                this.$router.go(0) */
               }
             }).catch((error) => {
               console.log(error)       //请求失败返回的数据
