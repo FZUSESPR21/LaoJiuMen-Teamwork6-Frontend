@@ -13,7 +13,7 @@
           <span>批量录入学生成绩</span>
         </el-menu-item>
 
-        <el-menu-item class="item" index="/teacher/result/dailyscore">
+<!--        <el-menu-item class="item" index="/teacher/result/dailyscore">
           <span>平时成绩构成比例</span>
         </el-menu-item>
 
@@ -23,7 +23,7 @@
 
         <el-menu-item class="item" index="/teacher/result/searchdaily">
           <span>查询学生平时成绩</span>
-        </el-menu-item>
+        </el-menu-item>-->
       </el-menu>
     </el-col>
   </el-row>

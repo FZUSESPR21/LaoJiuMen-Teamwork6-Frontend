@@ -2,6 +2,10 @@
   <div>
       <!--上传学生成绩excel-->
     <div class="rinput">
+      <div id="divP">
+        <p id="topP">下载Excel录入成绩</p>
+      </div>
+
       <input class="file" name="file_excel" type="file"  @change="select"/>
       <el-button size="mini" id="uploadbtn" icon="el-icon-upload2">上传Excel录入成绩</el-button>
       <el-button size="small" type="primary" @click="queryDownload">下载文件</el-button>
@@ -77,7 +81,7 @@
       </el-table>
     </div>
 
-    <el-button type="primary" plain size="mini" id="changebutton" @click="updateRules()">修改平时成绩占比</el-button>
+    <el-button type="primary" plain size="mini" class="button" @click="updateRules()">修改平时成绩占比</el-button>
 
 
     <div id="div2">
@@ -95,9 +99,9 @@
             <el-input class="input" v-model="formStu.writtenScore" placeholder=""></el-input>
           </el-form-item>
 
-          <el-form-item label="总分" prop="totalScore">
+<!--          <el-form-item label="总分" prop="totalScore">
             <el-input class="input" v-model="formStu.totalScore" placeholder=""></el-input>
-          </el-form-item>
+          </el-form-item>-->
         </el-form>
 
         <el-form ref="form" :model="formPre" id="formPre">
@@ -395,4 +399,23 @@ export default {
 .input {
   width: 50%;
 }
+
+#divP {
+  background-color: #e8e8e8;
+}
+#topP {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.rinput {
+  margin-bottom: 5%;
+}
+
+.button {
+  margin-top: 1%;
+  color: white;
+  background-color: #4ab2ee;
+}
+
 </style>

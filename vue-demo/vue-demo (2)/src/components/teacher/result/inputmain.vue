@@ -2,9 +2,9 @@
   <div>
 
 
-    <div class="sidebar1">
+<!--    <div class="sidebar1">
       <inputbar></inputbar>
-    </div>
+    </div>-->
 
     <div class="part1">
       <router-view></router-view>
@@ -38,8 +38,8 @@ export default {
 <style scoped>
 .part1{
   background-color: rgb(255, 255, 255);
-  float:right;
-  width: 85%;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
 .sidebar1{
