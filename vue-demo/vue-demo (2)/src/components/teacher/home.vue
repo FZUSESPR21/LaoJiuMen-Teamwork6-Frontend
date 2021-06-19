@@ -9,9 +9,15 @@
           </div>
           <div id="info">
             <span>
-              {{ teacherList.data }}
+              {{ teacherList }}
             </span>
           </div>
+          <input id="edit" v-model="changeContent">
+
+          </input>
+            <button id="changeInfo" @click="changeInfo">
+              修改信息
+            </button>
         </div>
 <!--        <div id="courseMessage">-->
 <!--          <div id="cMhead">-->
@@ -62,14 +68,63 @@ export default {
   data(){
     return {
       notificationList: [],
-      teacherList:[]
+      teacherList:'',
+
+      changeContent:'',
+      teacherId:''
     }
   },
   name: "home",
+  methods:{
+    changeInfo (){
+      let info1={
+        information:this.changeContent,
+          id:this.teacherId
+      }
+      this.teacherList = info1.information
+      this.$axios({
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(info1),
+        url: 'http://1.15.149.222:8080/coursewebsite/tch_info/update',
+      }).then(function(response)  {
+        console.log(response.data)
+        alert("修改成功")
+        if (response.data.code==='200') {
+
+        }
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+
+    },
+    show() {
+      let clazzId = JSON.parse(localStorage.clazzInfo)[0].id
+      let info = {}
+      let that = this
+      this.teacherId=localStorage.getItem('id')
+      this.$axios({
+        method: 'get',
+        headers: {
+          'Content-type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify(info),
+        url: 'http://1.15.149.222:8080/coursewebsite/tch_info/show?clazzId='+ clazzId,
+      }).then(function(response)  {
+        console.log(response.data.data)
+        that.teacherList = response.data.data
+      }).catch((error) => {
+        console.log(error)       //请求失败返回的数据
+      })
+    }
+  },
   created() {
     let clazzId = JSON.parse(localStorage.clazzInfo)[0].id
     let info = {}
     let that = this
+    this.teacherId=localStorage.getItem('id')
 // console.log(clazzId)
     this.$axios({
       method: 'get',
@@ -79,26 +134,13 @@ export default {
       data: JSON.stringify(info),
       url: 'http://1.15.149.222:8080/coursewebsite/notice/all?clazzId='+ clazzId +'&pn='+ 1,
     }).then(function(response)  {
-      // console.log(response.data.data.list)
+      console.log(response.data.data)
       that.notificationList = response.data.data.list
       that.notificationList = that.notificationList.slice(0,7)
     }).catch((error) => {
       console.log(error)       //请求失败返回的数据
     })
-    this.$axios({
-      method: 'get',
-      headers: {
-        'Content-type': 'application/json;charset=UTF-8'
-      },
-      data: JSON.stringify(info),
-      url: 'http://1.15.149.222:8080/coursewebsite/tch_info/show?clazzId='+ clazzId,
-    }).then(function(response)  {
-      console.log(response.data)
-      that.teacherList = response.data
-      that.teacherList = that.teacherList.slice(0,7)
-    }).catch((error) => {
-      console.log(error)       //请求失败返回的数据
-    })
+    this.show()
   }
 }
 </script>
@@ -108,6 +150,24 @@ export default {
   width: 80%;
   margin-top: 50px;
   text-align: center;
+}
+#changeInfo{
+  margin-top: 18px;
+  margin-left: 65%;
+  height: 30px;
+  background: rgb(52,162,224);
+  border-radius: 8px;
+  color: white;
+}
+#edit{
+  width: 80%;
+  border: #22344e solid 1px;
+  margin-left:9%;
+  height: 50px;
+  border-radius: 8px;
+  margin-top: 80px;
+  padding-top: 2px;
+  padding-left: 12px;
 }
 #mainimg{
   width: 100%;

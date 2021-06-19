@@ -3,7 +3,7 @@
     <div class="part">
       <!--      讨论列表-->
       <ul id="app">
-        <li>
+        <li id="topic">
           <div class="comment-item">
             <div class="comment-title">
               {{title}}
@@ -158,7 +158,15 @@ export default {
   margin-top: 0;
   font-size: 15px;
 }
-
+#topic{
+  border: #0e4d74 2px solid;
+  border-radius: 12px;
+  margin-top: 50px;
+  width: 94%;
+  margin-left: 3%;
+  padding-top: 20px;
+  margin-bottom: 80px;
+}
 .part{
   margin-top: 7px;
   background: rgb(255,255,255);
